@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="32" height="14" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="31">
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="32" height="14" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="34">
  <editorsettings>
   <export target="../assets/tilemaps/level-01-greyBlue-blank.json" format="json"/>
  </editorsettings>
@@ -31,5 +31,7 @@
   <object id="28" gid="7" x="256" y="416" width="32" height="32"/>
   <object id="29" gid="7" x="288" y="416" width="32" height="32"/>
   <object id="30" gid="7" x="320" y="416" width="32" height="32"/>
+  <object id="32" gid="8" x="255.014" y="418.414" width="32" height="32"/>
+  <object id="33" gid="8" x="255.014" y="418.414" width="32" height="32"/>
  </objectgroup>
 </map>
