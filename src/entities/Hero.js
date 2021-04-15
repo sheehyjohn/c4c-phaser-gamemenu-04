@@ -27,6 +27,7 @@ class Hero extends Phaser.GameObjects.Sprite {
 
     this.jump1sound = scene.jump1;
     this.jump2sound = scene.jump2;
+    this.coinChimeSound = scene.coinChime;
   }
 
   setupAnimations() {
@@ -88,7 +89,8 @@ class Hero extends Phaser.GameObjects.Sprite {
         },
         onFlip: () => {
           this.body.setVelocityY(-300);
-          this.jump2sound.play(); 
+          this.jump2sound.play();
+          //this.coinChimeSound.play(); 
         },
         onDie: () => {
           this.body.setVelocity(0, -500);

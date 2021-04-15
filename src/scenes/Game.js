@@ -122,7 +122,7 @@ class Game extends Phaser.Scene {
     // Game Code
     this.jump1 = this.sound.add('jump1', { loop: false });
     this.jump2 = this.sound.add('jump2', { loop: false }); 
-    this.coinChime = this.sound.add('coinChime');
+    this.coinChime = this.sound.add('coinChime', { loop: false }); 
 
     this.cursorKeys = this.input.keyboard.createCursorKeys();
 
@@ -221,6 +221,9 @@ class Game extends Phaser.Scene {
     console.log('coin.id = ' + coin.id);
     console.log(coin)
     coin.visible = false;
+    //this.coinGroup.remove(coin);
+    coin.destroy();
+    hero.coinChimeSound.play();
     //this.coinChime.play();
     
     //this.coinGroup.killAndHide(coin);
