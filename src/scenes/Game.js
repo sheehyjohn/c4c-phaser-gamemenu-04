@@ -187,16 +187,19 @@ class Game extends Phaser.Scene {
     const spikesCollider = this.physics.add.overlap(this.hero, this.spikeGroup, () => {
       this.hero.kill();
     });
-    
-    const coinsCollider = this.physics.add.overlap(this.hero, this.coinGroup, () => {
-      //this.hero.kill();
-      console.log('coin'); 
-      //console.log(this);
-      //console.log(this.colliderObject);
-      //console.log(this.coinGroup);
-      //this.colliderObject.destroy();
-      //this.coinGroup.destroy();
+     
+      const coinsCollider = this.physics.add.overlap(this.hero, this.coinGroup, () => { 
+      console.log('--coinsCollider');  
+      console.log(this.coinGroup);
+      console.log(this.coinGroup.children.id); 
     });
+
+    /*
+    const coinsOverlapEvent = this.physics.world.on('overlap', (coin) => {
+      console.log('--asdf');
+    });
+    */
+    
 
     this.hero.on('died', () => {
       groundCollider.destroy();
@@ -205,6 +208,9 @@ class Game extends Phaser.Scene {
       this.cameras.main.stopFollow();
     });
   }
+
+ 
+
 
   addMap() {
     console.log('this.levelIndex = ' + this.levelIndex);
@@ -244,8 +250,9 @@ class Game extends Phaser.Scene {
 
     this.coinGroup = this.physics.add.group({ immovable: true, allowGravity: false });
     
-
+    let coinID = 0;
     this.map.getObjectLayer('ObjectsCoins').objects.forEach(object => {
+      //console.log('--forEach');
       if (object.name === 'Start') {
         this.spawnPos = { x: object.x, y: object.y };
       }
@@ -254,8 +261,16 @@ class Game extends Phaser.Scene {
         coin.setOrigin(0, 1);
         coin.setSize(object.width - 10, object.height - 10);
         coin.setOffset(5, 10);
+        coin.id = coinID;
+        coin.onOverlap = true;
+        console.log(coin);
+        console.log('coinID = ' + coinID);
+        coinID++;
       }
+      
     });
+
+
     
 
    
