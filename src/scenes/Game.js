@@ -43,7 +43,14 @@ class Game extends Phaser.Scene {
     this.load.tilemapTiledJSON('level-20', 'assets/tilemaps/aa.json');
     //this.load.tilemapTiledJSON('level-1a', 'assets/tilemaps/level-1a.json');
 
-    this.load.image('world-1-sheet', 'assets/tilesets/world-1.png');
+    //this.load.image('world-1-sheet', 'assets/tilesets/world-1.png');
+    this.load.spritesheet('world-1-sheet', 'assets/tilesets/world-1.png', {
+      frameWidth: 32,
+      frameHeight: 32,
+      margin: 1,
+      spacing: 2,
+    });
+
 
     this.load.audio('jump1', ['assets/sound/jump1.wav']);
     this.load.audio('jump2', ['assets/sound/jump2.wav']);
