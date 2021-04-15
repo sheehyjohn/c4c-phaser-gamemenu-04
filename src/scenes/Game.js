@@ -112,7 +112,7 @@ class Game extends Phaser.Scene {
 
   create(data) {
 
-    this.score = 220;
+    this.score = 0;
 
     
 
@@ -208,6 +208,10 @@ class Game extends Phaser.Scene {
   const coinsCollider = this.physics.add.overlap(this.hero,  this.coinGroup, this.coinHandler, () => { 
     // this is the event handler for the overlap and it passes the two objects
     // hero and coin to coinHandler
+    
+    this.score += 10;
+    console.log(this.score);
+    this.text1.setText('Score: ' + this.score);
   });
  
 
