@@ -3,8 +3,7 @@ import gameState from '../model/gameState';
 import levels from '../data/levels'; 
 import Hero from '../entities/Hero';
 import ScoreHUD from '../scenes/scoreHUD';
-
-
+ 
 
 class Game extends Phaser.Scene {
   constructor() {
@@ -351,5 +350,5 @@ class Game extends Phaser.Scene {
     }
   }
 }
-
+ 
 export default Game;

@@ -8,5 +8,6 @@ import ScoreHUD from './scenes/scoreHUD';
 
 //const game = new Phaser.Game(Object.assign(config, {
 new Phaser.Game(Object.assign(config, {
-  scene: [BootScene, PreloaderScene, MenuScene, GameScene, ScoreHUD],
+  //scene: [BootScene, PreloaderScene, MenuScene, GameScene, ScoreHUD],
+  scene: [BootScene, PreloaderScene, MenuScene, GameScene],
 }));
