@@ -67,6 +67,8 @@ class Game extends Phaser.Scene {
     this.load.audio('jump1', ['assets/sound/jump1.wav']);
     this.load.audio('jump2', ['assets/sound/jump2.wav']);
 
+    this.load.audio('coinChime', ['assets/sound/chime1.wav']);
+
     this.load.spritesheet('hero-idle-sheet', 'assets/hero/idle.png', {
         frameWidth: 32,
         frameHeight: 64,
@@ -120,7 +122,8 @@ class Game extends Phaser.Scene {
     // Game Code
     this.jump1 = this.sound.add('jump1', { loop: false });
     this.jump2 = this.sound.add('jump2', { loop: false }); 
-    
+    this.coinChime = this.sound.add('coinChime');
+
     this.cursorKeys = this.input.keyboard.createCursorKeys();
 
     this.anims.create({
@@ -214,10 +217,12 @@ class Game extends Phaser.Scene {
    coinHandler(hero, coin) {
     //can get individual coing id
     //console.log('--coinHandler');
-    
+    this.coinChime.play();
     console.log('coin.id = ' + coin.id);
     console.log(coin)
     coin.visible = false;
+    //this.coinChime.play();
+    
     //this.coinGroup.killAndHide(coin);
     //coinGroup.killAndHide(coin);
   };
