@@ -102,3 +102,18 @@ dist
 
 # TernJS port file
 .tern-port
+
+.picasa.ini
+.picasaoriginals/
+
+# phaser 
+
+# build
+dist/
+
+# misc
+.DS_Store
+.env/ 
+.vscode/
+.idea
+ 
