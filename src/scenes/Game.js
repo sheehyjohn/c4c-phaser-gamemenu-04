@@ -210,13 +210,16 @@ class Game extends Phaser.Scene {
 
 
   } 
-
-
+  
    coinHandler(hero, coin) {
     //can get individual coing id
     //console.log('--coinHandler');
     
     console.log('coin.id = ' + coin.id);
+    console.log(coin)
+    coin.visible = false;
+    //this.coinGroup.killAndHide(coin);
+    //coinGroup.killAndHide(coin);
   };
   
 
