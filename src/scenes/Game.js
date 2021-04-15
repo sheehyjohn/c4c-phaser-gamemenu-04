@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import gameState from '../model/gameState';
 import levels from '../data/levels'; 
 import Hero from '../entities/Hero';
+import ScoreHUD from '../scenes/scoreHUD';
 
 
 
@@ -227,9 +228,13 @@ class Game extends Phaser.Scene {
     coin.destroy();
     hero.coinChimeSound.play();
     //this.coinChime.play();
-    
+    //this.events.emit('addScore');
+    //ScoreHUD.events.emit('addScore');
+    this.scene.events.emit('addScore');
+    this.ScoreHUD.events.emit('addScore');
     //this.coinGroup.killAndHide(coin);
     //coinGroup.killAndHide(coin);
+    
   };
   
 
