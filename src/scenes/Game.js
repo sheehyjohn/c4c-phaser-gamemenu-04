@@ -210,11 +210,14 @@ class Game extends Phaser.Scene {
 
   const coinsCollider = this.physics.add.overlap(this.hero,  this.coinGroup, this.coinHandler, () => { 
     // this is the event handler for the overlap and it passes the two objects
-    // hero and coin to coinHandler
-    
+    // hero and coin to coinHandler 
     this.score += 10;
     console.log(this.score);
     this.text1.setText('Score: ' + this.score);
+  });
+
+  const keyCollider = this.physics.add.overlap(this.hero, this.keyGroup, this.keyHandler, () => {
+
   });
  
 
@@ -231,17 +234,16 @@ class Game extends Phaser.Scene {
  
   
    coinHandler(hero, coin) { 
-    console.log('coin.id = ' + coin.id);
-    //console.log(coin)
+    console.log('coin.id = ' + coin.id); 
     coin.visible = false; 
     coin.destroy();
-    hero.coinChimeSound.play();
-    //this.score = this.score + 10;
-    console.log(this.score);
-    //console.log(this.scene.score);
-    //this.scoreHandler();
+    hero.coinChimeSound.play(); 
     
   };
+
+  keyHandler(hero, key) {
+    console.log('key.id = ' + key.id);
+  }
 
  
   
@@ -309,6 +311,29 @@ class Game extends Phaser.Scene {
         // /console.log(coin);
         console.log('coin.id = ' + coin.id); //coinID);
         coinID++;
+      }
+      
+    });
+
+    ///////////////// Keys //////////////
+    this.keyGroup = this.physics.add.group({ immovable: true, allowGravity: false });
+    let keyID = 0;
+    this.map.getObjectLayer('ObjectsKeys').objects.forEach(object => {
+      console.log('--forEach-Keys');
+      if (object.name === 'Start') {
+        this.spawnPos = { x: object.x, y: object.y };
+      }
+      if (object.gid === 9) {
+        const key = this.keyGroup.create(object.x, object.y, 'world-1-sheet', object.gid - 1);
+        key.setOrigin(0, 1);
+        key.setSize(object.width - 10, object.height - 10);
+        key.setOffset(5, 10);
+        // Coins are given a unique ID
+        key.id = keyID;
+        key.onOverlap = true;
+        // /console.log(coin);
+        console.log('coin.id = ' + key.id); //);
+        keyID++;
       }
       
     });
