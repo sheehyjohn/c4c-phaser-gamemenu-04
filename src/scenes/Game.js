@@ -109,7 +109,10 @@ class Game extends Phaser.Scene {
 }
 
   create(data) {
-    this.add.text(10, 10, this.levelData.name, { font: '48px Arial', fill: '#000000' });
+
+    
+
+    
 
    // const hero = this.add.sprite(26 + this.levelIndex * 70, 80, 'hero-run-sheet', 1);
    // hero.anims.play('hero-running');
@@ -226,11 +229,15 @@ class Game extends Phaser.Scene {
     //this.coinGroup.remove(coin);
     coin.destroy();
     hero.coinChimeSound.play();
+    //this.score = this.score + 10;
+    console.log(this.score);
+    //text1.update();
+    //this.text1.setText('Score: ' + this.score);
     //this.coinChime.play();
     //this.events.emit('addScore');
     //ScoreHUD.events.emit('addScore');
-    this.scene.events.emit('addScore');
-    this.ScoreHUD.events.emit('addScore');
+    //this.scene.events.emit('addScore');
+    //this.ScoreHUD.events.emit('addScore');
     //this.coinGroup.killAndHide(coin);
     //coinGroup.killAndHide(coin);
     
@@ -252,6 +259,15 @@ class Game extends Phaser.Scene {
     const backgroundLayer = this.map.createStaticLayer('Background', backgroundTiles);
     backgroundLayer.setScrollFactor(0.6);
     
+    this.add.text(10, 10, this.levelData.name, { font: '48px Arial', fill: '#000000' });
+    
+    
+    this.score = 0;
+    this.text1 = this.add.text(370,10, 'Score: ' + this.score, { font: '24px Arial', fill: '#000000' });
+    this.text1.setScrollFactor(0);
+    //text1.scrollFactor(0);
+    //text1.scrollFactorY(0);
+
     const groundLayer = this.map.createStaticLayer('Ground', groundTiles);
     groundLayer.setCollision([1, 2, 4], true);
 
