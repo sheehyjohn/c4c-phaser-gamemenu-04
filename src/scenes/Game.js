@@ -38,8 +38,8 @@ class Game extends Phaser.Scene {
     this.load.tilemapTiledJSON('level-16', 'assets/tilemaps/level-16-cian.json');
     this.load.tilemapTiledJSON('level-17', 'assets/tilemaps/level-17-dar.json');
     this.load.tilemapTiledJSON('level-18', 'assets/tilemaps/level-18-dar.json');
-    this.load.tilemapTiledJSON('level-19', 'assets/tilemaps/aa.json');
-    this.load.tilemapTiledJSON('level-20', 'assets/tilemaps/aa.json');
+    //this.load.tilemapTiledJSON('level-19', 'assets/tilemaps/aa.json');
+    //this.load.tilemapTiledJSON('level-20', 'assets/tilemaps/aa.json');
     //this.load.tilemapTiledJSON('level-1a', 'assets/tilemaps/level-1a.json');
 
     //this.load.image('world-1-sheet', 'assets/tilesets/world-1.png');
@@ -50,9 +50,19 @@ class Game extends Phaser.Scene {
       spacing: 2,
     });
 
+    console.log('-- decide background');
+    console.log(this.levelIndex);
+    console.log(this.levelData);
+    //this.decideBackground();
+
     //this.load.image('clouds-sheet', 'assets/tilesets/clouds.png');
     //this.load.image('clouds-sheet', 'assets/tilesets/pinkTrees.png');
     this.load.image('clouds-sheet', 'assets/tilesets/blueGrey.png');
+
+
+
+
+
 
     this.load.audio('jump1', ['assets/sound/jump1.wav']);
     this.load.audio('jump2', ['assets/sound/jump2.wav']);
@@ -187,8 +197,8 @@ class Game extends Phaser.Scene {
   }
 
   addMap() {
-    console.log(this.levelIndex);
-    console.log(this.levelData);
+    console.log('this.levelIndex = ' + this.levelIndex);
+    console.log('this.levelData = ' + this.levelData);
     console.log('level = ' + this.levelData.map);
     //this.map = this.make.tilemap({ key: 'level-1' });
     this.map = this.make.tilemap({ key: this.levelData.map }); 
@@ -226,6 +236,33 @@ class Game extends Phaser.Scene {
    
 
     this.map.createStaticLayer('Foreground', groundTiles);
+
+  }
+
+  getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+  decideBackground() {
+    console.log('--decideBackground()');
+    //this.load.image('clouds-sheet', 'assets/tilesets/blueGrey.png');
+    var backgroundFlag = this.getRandomInt(3)
+    console.log('backgroundFlag = ' + backgroundFlag);
+
+    //if
+    switch(backgroundFlag) {
+        case 0:
+          this.load.image('clouds-sheet', 'assets/tilesets/clouds.png');
+          break;
+        case 1:
+          this.load.image('clouds-sheet', 'assets/tilesets/blueGrey.png');
+          break;
+        default:
+          this.load.image('clouds-sheet', 'assets/tilesets/pinkTrees.png');
+    }
+
+
+
 
   }
 
