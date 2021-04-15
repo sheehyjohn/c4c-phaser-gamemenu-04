@@ -190,8 +190,12 @@ class Game extends Phaser.Scene {
     
     const coinsCollider = this.physics.add.overlap(this.hero, this.coinGroup, () => {
       //this.hero.kill();
-      console.log('coin');
-      console.log(this.coinGroup)
+      console.log('coin'); 
+      //console.log(this);
+      //console.log(this.colliderObject);
+      //console.log(this.coinGroup);
+      //this.colliderObject.destroy();
+      //this.coinGroup.destroy();
     });
 
     this.hero.on('died', () => {
@@ -239,6 +243,7 @@ class Game extends Phaser.Scene {
     });
 
     this.coinGroup = this.physics.add.group({ immovable: true, allowGravity: false });
+    
 
     this.map.getObjectLayer('ObjectsCoins').objects.forEach(object => {
       if (object.name === 'Start') {
