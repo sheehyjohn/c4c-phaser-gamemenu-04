@@ -28,6 +28,7 @@ class Hero extends Phaser.GameObjects.Sprite {
     this.jump1sound = scene.jump1;
     this.jump2sound = scene.jump2;
     this.coinChimeSound = scene.coinChime;
+    this.deadSoundSound = scene.deadSound;
   }
 
   setupAnimations() {
@@ -120,6 +121,7 @@ class Hero extends Phaser.GameObjects.Sprite {
       this.moveState.die();
       this.animState.die();
       this.emit('died');
+      this.deadSoundSound.play();
     }
   }
 

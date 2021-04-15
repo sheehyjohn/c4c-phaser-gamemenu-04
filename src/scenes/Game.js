@@ -72,6 +72,7 @@ class Game extends Phaser.Scene {
     this.load.audio('jump2', ['assets/sound/jump2.wav']);
 
     this.load.audio('coinChime', ['assets/sound/chime1.wav']);
+    this.load.audio('deadSound', ['assets/sound/oh_no.wav']);
 
     this.load.spritesheet('hero-idle-sheet', 'assets/hero/idle.png', {
         frameWidth: 32,
@@ -130,6 +131,8 @@ class Game extends Phaser.Scene {
     this.jump1 = this.sound.add('jump1', { loop: false });
     this.jump2 = this.sound.add('jump2', { loop: false }); 
     this.coinChime = this.sound.add('coinChime', { loop: false }); 
+    //this.deadSound = this.sound.add('deadSound', { loop: false }); 
+    this.deadSound = this.sound.add('deadSound'); 
 
     this.cursorKeys = this.input.keyboard.createCursorKeys();
 
