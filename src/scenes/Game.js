@@ -21,8 +21,7 @@ class Game extends Phaser.Scene {
     //this.load.tilemapTiledJSON('level-1', 'assets/tilemaps/level-1.json');
     //this.load.tilemapTiledJSON('level-1', 'assets/tilemaps/level-01-js.json');
     this.load.tilemapTiledJSON('level-1', 'assets/tilemaps/level-01-greyBlue.json');
-    //this.load.tilemapTiledJSON('level-2', 'assets/tilemaps/level-02-js.json');
-    this.load.tilemapTiledJSON('level-2', 'assets/tilemaps/level-01-greyBlue-blank.json');
+    this.load.tilemapTiledJSON('level-2', 'assets/tilemaps/level-02-js.json');
     this.load.tilemapTiledJSON('level-3', 'assets/tilemaps/level-03-js.json');
     this.load.tilemapTiledJSON('level-4', 'assets/tilemaps/level-04-js.json');
     this.load.tilemapTiledJSON('level-5', 'assets/tilemaps/level-05-hl.json');
