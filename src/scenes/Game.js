@@ -115,6 +115,7 @@ class Game extends Phaser.Scene {
   create(data) {
 
     this.score = 0;
+    this.keyCount = 0;
 
     
 
@@ -270,8 +271,7 @@ class Game extends Phaser.Scene {
     this.add.text(10, 10, this.levelData.name, { font: '48px Arial', fill: '#000000' });
     
    
-    this.text1 = this.add.text(370,10, 'Score: ' + this.score, { font: '24px Arial', fill: '#000000' });
-    this.text1.setScrollFactor(0);
+    
     //text1.scrollFactor(0);
     //text1.scrollFactorY(0);
 
@@ -345,7 +345,10 @@ class Game extends Phaser.Scene {
 
     
 
-   
+    this.text1 = this.add.text(370,10, 'Score: ' + this.score, { font: '24px Arial', fill: '#000000' });
+    this.text1.setScrollFactor(0);
+    this.keyText = this.add.text(370,30, 'Key: ' + this.keyCount + ' of 2 ', { font: '24px Arial', fill: '#000000' });
+    this.keyText.setScrollFactor(0);
 
     this.map.createStaticLayer('Foreground', groundTiles);
 
