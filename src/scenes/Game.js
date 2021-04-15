@@ -220,7 +220,13 @@ class Game extends Phaser.Scene {
   });
 
   const keyCollider = this.physics.add.overlap(this.hero, this.keyGroup, this.keyHandler, () => {
-
+    this.keyCount++;
+    //console.log
+    this.keyText.setText('Key: ' + this.keyCount + ' of 2 ');
+    if (this.keyCount == 2) {
+      console.log('--two keys - next Level');
+      this.completeLevel();  
+    }
   });
  
 
@@ -247,7 +253,8 @@ class Game extends Phaser.Scene {
   keyHandler(hero, key) {
     console.log('key.id = ' + key.id);
     hero.keySoundSound.play();
-    hero.coinChimeSound.play(); 
+    key.destroy();
+    //hero.coinChimeSound.play(); 
   }
 
  
