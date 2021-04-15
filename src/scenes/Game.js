@@ -217,7 +217,7 @@ class Game extends Phaser.Scene {
    coinHandler(hero, coin) {
     //can get individual coing id
     //console.log('--coinHandler');
-    this.coinChime.play();
+    //this.coinChime.play();
     console.log('coin.id = ' + coin.id);
     console.log(coin)
     coin.visible = false;
