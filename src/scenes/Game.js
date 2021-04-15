@@ -196,7 +196,8 @@ class Game extends Phaser.Scene {
     */
 
   const coinsCollider = this.physics.add.overlap(this.hero,  this.coinGroup, this.coinHandler, () => { 
-   
+    // this is the event handler for the overlap and it passes the two objects
+    // hero and coin to coinHandler
   });
  
 
@@ -212,7 +213,9 @@ class Game extends Phaser.Scene {
 
 
    coinHandler(hero, coin) {
+    //can get individual coing id
     //console.log('--coinHandler');
+    
     console.log('coin.id = ' + coin.id);
   };
   
@@ -266,6 +269,7 @@ class Game extends Phaser.Scene {
         coin.setOrigin(0, 1);
         coin.setSize(object.width - 10, object.height - 10);
         coin.setOffset(5, 10);
+        // Coins are given a unique ID
         coin.id = coinID;
         coin.onOverlap = true;
         // /console.log(coin);
