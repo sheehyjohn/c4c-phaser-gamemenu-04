@@ -29,6 +29,7 @@ class Hero extends Phaser.GameObjects.Sprite {
     this.jump2sound = scene.jump2;
     this.coinChimeSound = scene.coinChime;
     this.deadSoundSound = scene.deadSound;
+    this.keySoundSound = scene.keySound;
   }
 
   setupAnimations() {
