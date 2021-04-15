@@ -19,7 +19,8 @@ class Game extends Phaser.Scene {
   preload() {
 
     //this.load.tilemapTiledJSON('level-1', 'assets/tilemaps/level-1.json');
-    this.load.tilemapTiledJSON('level-1', 'assets/tilemaps/level-01-js.json');
+    //this.load.tilemapTiledJSON('level-1', 'assets/tilemaps/level-01-js.json');
+    this.load.tilemapTiledJSON('level-1', 'assets/tilemaps/level-01-greyBlue.json');
     this.load.tilemapTiledJSON('level-2', 'assets/tilemaps/level-02-js.json');
     this.load.tilemapTiledJSON('level-3', 'assets/tilemaps/level-03-js.json');
     this.load.tilemapTiledJSON('level-4', 'assets/tilemaps/level-04-js.json');
@@ -77,6 +78,10 @@ class Game extends Phaser.Scene {
         frameWidth: 32,
         frameHeight: 64,
     }); 
+    this.load.spritesheet('hero-die-sheet', 'assets/hero/bonk.png', {
+      frameWidth: 32,
+      frameHeight: 64,
+    });
 }
 
   create(data) {
@@ -136,18 +141,39 @@ class Game extends Phaser.Scene {
         repeat: -1,
     });
 
+    this.anims.create({
+      key: 'hero-dead',
+      frames: this.anims.generateFrameNumbers('hero-die-sheet'),
+    });
+
     this.addMap(); 
     this.addHero();
 
     this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
-    this.cameras.main.startFollow(this.hero);   
+    //this.cameras.main.startFollow(this.hero);   
 
 
   }
 
   addHero() {
-    this.hero = new Hero(this, 250, 160); 
-    this.physics.add.collider(this.hero, this.map.getLayer('Ground').tilemapLayer);
+    this.hero = new Hero(this, this.spawnPos.x, this.spawnPos.y);
+
+    this.cameras.main.startFollow(this.hero);
+    
+    this.children.moveTo(this.hero, this.children.getIndex(this.map.getLayer('Foreground').tilemapLayer));
+
+    const groundCollider = this.physics.add.collider(this.hero, this.map.getLayer('Ground').tilemapLayer);
+
+    const spikesCollider = this.physics.add.overlap(this.hero, this.spikeGroup, () => {
+      this.hero.kill();
+    });
+    
+    this.hero.on('died', () => {
+      groundCollider.destroy();
+      spikesCollider.destroy();
+      this.hero.body.setCollideWorldBounds(false);
+      this.cameras.main.stopFollow();
+    });
   }
 
   addMap() {
@@ -155,17 +181,41 @@ class Game extends Phaser.Scene {
     console.log(this.levelData);
     console.log('level = ' + this.levelData.map);
     //this.map = this.make.tilemap({ key: 'level-1' });
-    this.map = this.make.tilemap({ key: this.levelData.map });
-
+    this.map = this.make.tilemap({ key: this.levelData.map }); 
     
     const groundTiles = this.map.addTilesetImage('world-1', 'world-1-sheet');
+    const backgroundTiles = this.map.addTilesetImage('clouds', 'clouds-sheet');
 
+    // Z-Depth occurs as the layers are created ... clouds at the back
+    const backgroundLayer = this.map.createStaticLayer('Background', backgroundTiles);
+    backgroundLayer.setScrollFactor(0.6);
+    
     const groundLayer = this.map.createStaticLayer('Ground', groundTiles);
     groundLayer.setCollision([1, 2, 4], true);
 
-    this.map.createStaticLayer('Ground', groundTiles);
-    this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
-    this.physics.world.setBoundsCollision(true, true, false, true);
+     //this.map.createStaticLayer('Ground', groundTiles);
+     this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+     this.physics.world.setBoundsCollision(true, true, false, true);
+
+     this.spikeGroup = this.physics.add.group({ immovable: true, allowGravity: false });
+
+     this.map.getObjectLayer('Objects').objects.forEach(object => {
+      if (object.name === 'Start') {
+        this.spawnPos = { x: object.x, y: object.y };
+      }
+      if (object.gid === 7) {
+        const spike = this.spikeGroup.create(object.x, object.y, 'world-1-sheet', object.gid - 1);
+        spike.setOrigin(0, 1);
+        spike.setSize(object.width - 10, object.height - 10);
+        spike.setOffset(5, 10);
+      }
+    });
+    
+
+   
+
+    this.map.createStaticLayer('Foreground', groundTiles);
+
   }
 
   failLevel() {
@@ -177,7 +227,14 @@ class Game extends Phaser.Scene {
     this.scene.start('MenuScene');
   }
 
-  update(time, delta) {}
+  update(time, delta) {
+    const cameraBottom = this.cameras.main.getWorldPoint(0, this.cameras.main.height).y;
+
+    if (this.hero.isDead() && this.hero.getBounds().top > cameraBottom + 100) {
+      this.hero.destroy();
+      this.addHero()
+    }
+  }
 }
 
 export default Game;

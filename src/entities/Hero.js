@@ -5,13 +5,14 @@ import StateMachine from 'javascript-state-machine';
 class Hero extends Phaser.GameObjects.Sprite {
 
   constructor(scene, x, y) {
-    super(scene, x, y, 'hero-run-sheet', 0);    //0=default frame
-
-    scene.add.existing(this);               // adds game object to scene
-    scene.physics.add.existing(this);       // adds game object to the physics world
+    super(scene, x, y, 'hero-run-sheet', 0);
+    
+    scene.add.existing(this);
+    scene.physics.add.existing(this);
 
     this.anims.play('hero-running');
 
+    this.setOrigin(0.5, 1);
     this.body.setCollideWorldBounds(true);
     this.body.setSize(12, 40);
     this.body.setOffset(12, 23);
@@ -20,177 +21,143 @@ class Hero extends Phaser.GameObjects.Sprite {
 
     this.keys = scene.cursorKeys;
     this.input = {};
-    
+
     this.setupAnimations();
-    
     this.setupMovement();
-    
-    this.jump1sound = scene.jump1;
-    this.jump2sound = scene.jump2;
-    
-}
+  }
 
-    setupAnimations() {
-        this.animState = new StateMachine({
-        init: 'idle',
-        transitions: [
-            { name: 'idle', from: ['falling', 'running', 'pivoting'], to: 'idle' },
-            { name: 'run', from: ['falling', 'idle', 'pivoting'], to: 'running' },
-            { name: 'pivot', from: ['falling', 'running'], to: 'pivoting' },
-            { name: 'jump', from: ['idle', 'running', 'pivoting'], to: 'jumping' },
-            { name: 'flip', from: ['jumping', 'falling'], to: 'flipping' },
-            { name: 'fall', from: '*', to: 'falling' },
-        ],
-        methods: {
-            onEnterState: (lifecycle) => {
-            this.anims.play('hero-' + lifecycle.to);
-            //console.log(lifecycle);
-            },
+  setupAnimations() {
+    this.animState = new StateMachine({
+      init: 'idle',
+      transitions: [
+        { name: 'idle', from: ['falling', 'running', 'pivoting'], to: 'idle' },
+        { name: 'run', from: ['falling', 'idle', 'pivoting'], to: 'running' },
+        { name: 'pivot', from: ['falling', 'running'], to: 'pivoting' },
+        { name: 'jump', from: ['idle', 'running', 'pivoting'], to: 'jumping' },
+        { name: 'flip', from: ['jumping', 'falling'], to: 'flipping' },
+        { name: 'fall', from: ['idle', 'running', 'pivoting', 'jumping', 'flipping'], to: 'falling' },
+        { name: 'die', from: '*', to: 'dead' },
+      ],
+      methods: {
+        onEnterState: (lifecycle) => {
+          this.anims.play('hero-' + lifecycle.to);
+          console.log(lifecycle);
         },
-        });
+      },
+    });
 
-        this.animPredicates = {
-            idle: () => {
-                return this.body.onFloor() && this.body.velocity.x === 0;
-            },
-            run: () => {
-                return this.body.onFloor() && Math.sign(this.body.velocity.x) === (this.flipX ? -1 : 1);  //Facing Direction Test
-            },
-            pivot: () => {
-                return this.body.onFloor() && Math.sign(this.body.velocity.x) === (this.flipX ? 1 : -1);
-            },
-            jump: () => {
-                return this.body.velocity.y < 0;
-            },
-            flip: () => {
-                return this.body.velocity.y < 0 && this.moveState.is('flipping');
-            },
-            fall: () => {
-                return this.body.velocity.y > 0;
-            },
-            };
-    }
+    this.animPredicates = {
+      idle: () => {
+        return this.body.onFloor() && this.body.velocity.x === 0;
+      },
+      run: () => {
+        return this.body.onFloor() && Math.sign(this.body.velocity.x) === (this.flipX ? -1 : 1);
+      },
+      pivot: () => {
+        return this.body.onFloor() && Math.sign(this.body.velocity.x) === (this.flipX ? 1 : -1);
+      },
+      jump: () => {
+        return this.body.velocity.y < 0;
+      },
+      flip: () => {
+        return this.body.velocity.y < 0 && this.moveState.is('flipping');
+      },
+      fall: () => {
+        return this.body.velocity.y > 0;
+      },
+    };
+  }
 
-    setupMovement() {
+  setupMovement() {
     this.moveState = new StateMachine({
-        init: 'standing',
-        transitions: [
+      init: 'standing',
+      transitions: [
         { name: 'jump', from: 'standing', to: 'jumping' },
         { name: 'flip', from: 'jumping', to: 'flipping' },
         { name: 'fall', from: 'standing', to: 'falling' },
         { name: 'touchdown', from: ['jumping', 'flipping', 'falling'], to: 'standing'},
-        ],
-        methods: { 
-            onJump: () => {
-                this.body.setVelocityY(-400);
-                console.log('--jump1');  
-                this.jump1sound.play();
-            },
-            onFlip: () => {
-                this.body.setVelocityY(-300);
-                console.log('--jump2');
-                this.jump2sound.play(); 
-            }
+        { name: 'die', from: ['jumping', 'flipping', 'falling', 'standing'], to: 'dead' },
+      ],
+      methods: {
+        onJump: () => {
+          this.body.setVelocityY(-400);
         },
+        onFlip: () => {
+          this.body.setVelocityY(-300);
+        },
+        onDie: () => {
+          this.body.setVelocity(0, -500);
+          this.body.setAcceleration(0);
+        },
+      },
     });
 
-    
     this.movePredicates = {
-        jump: () => {
-            return this.input.didPressJump;
-          },
-          flip: () => {
-            return this.input.didPressJump;
-          },
-          fall: () => {
-            return !this.body.onFloor();
-          },
-          touchdown: () => { 
-            //console.log(this.body.onCollide);
-            if (this.body.onFloor()  == true ){
-                console.log('"floor" contact = ' + this.body.onFloor());
-            }
-            
-            if (this.body.onWall()  == true ){
-                console.log('"wall" contact = ' + this.body.onWall());
-            }
-            
-            return this.body.onFloor();
-            },
-      };
+      jump: () => {
+        return this.input.didPressJump;
+      },
+      flip: () => {
+        return this.input.didPressJump;
+      },
+      fall: () => {
+        return !this.body.onFloor();
+      },
+      touchdown: () => {
+        return this.body.onFloor();
+      },
+    };
+  }
 
+  kill() {
+    if (this.moveState.can('die')) {
+      this.moveState.die();
+      this.animState.die();
+      this.emit('died');
     }
+  }
 
-    preUpdate(time, delta) {
+  isDead() {
+    return this.moveState.is('dead');
+  }
+
+  preUpdate(time, delta) {
     super.preUpdate(time, delta);
 
-    this.input.didPressJump = Phaser.Input.Keyboard.JustDown(this.keys.up);
-
-        if (this.keys.left.isDown) {
-            //this.body.setVelocityX(-250);
-            this.body.setAccelerationX(-1000);
-            this.setFlipX(true);
-            this.body.offset.x = 8;
-        } else if (this.keys.right.isDown) {
-            //this.body.setVelocityX(250);
-            this.body.setAccelerationX(1000);
-            this.setFlipX(false);
-            this.body.offset.x = 12;
-        } else {
-            //this.body.setVelocityX(0);
-            this.body.setAccelerationX(0);
-        }
-
-        if (this.body.onFloor()) {
-            this.canDoubleJump = false;
-          }
-      
-          if (this.body.velocity.y > 0) {
-            this.isJumping = false;
-          }
-        
-        const didPressJump = Phaser.Input.Keyboard.JustDown(this.keys.up);
-
-        // if (didPressJump ) {                         // Check if on contact with Floor or you get Flappy Bird
-        /* // Single Jump
-        if (didPressJump && this.body.onFloor()) {            
-          this.body.setVelocityY(-400);
-        }
-        */
-        if (didPressJump) {
-            if (this.body.onFloor()) {
-                this.isJumping = true;          // Logic for jumping on a fall
-                this.canDoubleJump = true;
-                this.body.setVelocityY(-400);
-            } else if (this.canDoubleJump) {
-                this.isJumping = true;
-                this.canDoubleJump = false;
-                this.body.setVelocityY(-300);
-            }
-        }
-
-
-        if (!this.keys.up.isDown && this.body.velocity.y < -150 && this.isJumping) {
-            this.body.setVelocityY(-150);
-        }
-
-        //Checks which methods/states are valid from our current state
-        for (const t of this.moveState.transitions()) {
-            if (t in this.movePredicates && this.movePredicates[t]()) {
-              this.moveState[t]();
-              break;            //Stop checking for other states
-            }
-          }
-
-        for (const t of this.animState.transitions()) {
-            if (t in this.animPredicates && this.animPredicates[t]()) {
-            this.animState[t]();
-            break;
-            }
-        }
-        
+    this.input.didPressJump = !this.isDead() && Phaser.Input.Keyboard.JustDown(this.keys.up);
+    
+    if (!this.isDead() && this.keys.left.isDown) {
+      this.body.setAccelerationX(-1000);
+      this.setFlipX(true);
+      this.body.offset.x = 8;
+    } else if (!this.isDead() && this.keys.right.isDown) {
+      this.body.setAccelerationX(1000);
+      this.setFlipX(false);
+      this.body.offset.x = 12;
+    } else {
+      this.body.setAccelerationX(0);
     }
+
+    if (this.moveState.is('jumping') || this.moveState.is('flipping')) {
+      if (!this.keys.up.isDown && this.body.velocity.y < -150) {
+        this.body.setVelocityY(-150);
+      }
+    }
+
+    for (const t of this.moveState.transitions()) {
+      if (t in this.movePredicates && this.movePredicates[t]()) {
+        this.moveState[t]();
+        break;
+      }
+    }
+
+    for (const t of this.animState.transitions()) {
+      if (t in this.animPredicates && this.animPredicates[t]()) {
+        this.animState[t]();
+        break;
+      }
+    }
+  }
 
 }
 
-export default Hero; 
+export default Hero;
