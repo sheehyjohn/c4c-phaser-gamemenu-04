@@ -50,6 +50,9 @@ class Game extends Phaser.Scene {
       spacing: 2,
     });
 
+    //this.load.image('clouds-sheet', 'assets/tilesets/clouds.png');
+    //this.load.image('clouds-sheet', 'assets/tilesets/pinkTrees.png');
+    this.load.image('clouds-sheet', 'assets/tilesets/blueGrey.png');
 
     this.load.audio('jump1', ['assets/sound/jump1.wav']);
     this.load.audio('jump2', ['assets/sound/jump2.wav']);
@@ -192,6 +195,7 @@ class Game extends Phaser.Scene {
     
     const groundTiles = this.map.addTilesetImage('world-1', 'world-1-sheet');
     const backgroundTiles = this.map.addTilesetImage('clouds', 'clouds-sheet');
+    //const backgroundTiles = this.map.addTilesetImage('blueGrey', 'clouds-sheet');
 
     // Z-Depth occurs as the layers are created ... clouds at the back
     const backgroundLayer = this.map.createStaticLayer('Background', backgroundTiles);
