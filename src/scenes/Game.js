@@ -188,6 +188,12 @@ class Game extends Phaser.Scene {
       this.hero.kill();
     });
     
+    const coinsCollider = this.physics.add.overlap(this.hero, this.coinGroup, () => {
+      //this.hero.kill();
+      console.log('coin');
+      console.log(this.coinGroup)
+    });
+
     this.hero.on('died', () => {
       groundCollider.destroy();
       spikesCollider.destroy();
@@ -218,7 +224,7 @@ class Game extends Phaser.Scene {
      this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
      this.physics.world.setBoundsCollision(true, true, false, true);
 
-     this.spikeGroup = this.physics.add.group({ immovable: true, allowGravity: false });
+     this.spikeGroup = this.physics.add.group({ immovable: true, allowGravity: false });     
 
      this.map.getObjectLayer('Objects').objects.forEach(object => {
       if (object.name === 'Start') {
@@ -229,6 +235,20 @@ class Game extends Phaser.Scene {
         spike.setOrigin(0, 1);
         spike.setSize(object.width - 10, object.height - 10);
         spike.setOffset(5, 10);
+      }
+    });
+
+    this.coinGroup = this.physics.add.group({ immovable: true, allowGravity: false });
+
+    this.map.getObjectLayer('ObjectsCoins').objects.forEach(object => {
+      if (object.name === 'Start') {
+        this.spawnPos = { x: object.x, y: object.y };
+      }
+      if (object.gid === 8) {
+        const coin = this.coinGroup.create(object.x, object.y, 'world-1-sheet', object.gid - 1);
+        coin.setOrigin(0, 1);
+        coin.setSize(object.width - 10, object.height - 10);
+        coin.setOffset(5, 10);
       }
     });
     
