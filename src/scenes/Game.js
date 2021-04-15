@@ -14,6 +14,8 @@ class Game extends Phaser.Scene {
     this.levelIndex = data.levelIndex;
     this.levelData = levels[this.levelIndex];
     console.log('--game.js');
+    
+    
     //console.log(this.levelIndex);
     //console.log(this.levelData);
   }
@@ -63,7 +65,7 @@ class Game extends Phaser.Scene {
 
 
 
-
+    
 
 
     this.load.audio('jump1', ['assets/sound/jump1.wav']);
@@ -110,7 +112,7 @@ class Game extends Phaser.Scene {
 
   create(data) {
 
-    
+    this.score = 220;
 
     
 
@@ -217,31 +219,24 @@ class Game extends Phaser.Scene {
     });
 
 
-  } 
+  }
   
-   coinHandler(hero, coin) {
-    //can get individual coing id
-    //console.log('--coinHandler');
-    //this.coinChime.play();
+ 
+  
+   coinHandler(hero, coin) { 
     console.log('coin.id = ' + coin.id);
-    console.log(coin)
-    coin.visible = false;
-    //this.coinGroup.remove(coin);
+    //console.log(coin)
+    coin.visible = false; 
     coin.destroy();
     hero.coinChimeSound.play();
     //this.score = this.score + 10;
     console.log(this.score);
-    //text1.update();
-    //this.text1.setText('Score: ' + this.score);
-    //this.coinChime.play();
-    //this.events.emit('addScore');
-    //ScoreHUD.events.emit('addScore');
-    //this.scene.events.emit('addScore');
-    //this.ScoreHUD.events.emit('addScore');
-    //this.coinGroup.killAndHide(coin);
-    //coinGroup.killAndHide(coin);
+    //console.log(this.scene.score);
+    //this.scoreHandler();
     
   };
+
+ 
   
 
   addMap() {
@@ -261,8 +256,7 @@ class Game extends Phaser.Scene {
     
     this.add.text(10, 10, this.levelData.name, { font: '48px Arial', fill: '#000000' });
     
-    
-    this.score = 0;
+   
     this.text1 = this.add.text(370,10, 'Score: ' + this.score, { font: '24px Arial', fill: '#000000' });
     this.text1.setScrollFactor(0);
     //text1.scrollFactor(0);
