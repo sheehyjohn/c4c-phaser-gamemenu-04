@@ -3,6 +3,8 @@ import gameState from '../model/gameState';
 import levels from '../data/levels'; 
 import Hero from '../entities/Hero';
 
+
+
 class Game extends Phaser.Scene {
   constructor() {
     super({ key: 'GameScene' });
