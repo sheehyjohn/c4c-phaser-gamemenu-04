@@ -188,18 +188,17 @@ class Game extends Phaser.Scene {
       this.hero.kill();
     });
      
-      const coinsCollider = this.physics.add.overlap(this.hero, this.coinGroup, () => { 
-      console.log('--coinsCollider');  
-      console.log(this.coinGroup);
-      console.log(this.coinGroup.children.id); 
-    });
-
     /*
-    const coinsOverlapEvent = this.physics.world.on('overlap', (coin) => {
-      console.log('--asdf');
+    const coinsCollider = this.physics.add.overlap(this.hero, this.coinGroup, () => { 
+        console.log('--coinsCollider');  
+        console.log(this.coinGroup); 
     });
     */
-    
+
+  const coinsCollider = this.physics.add.overlap(this.hero,  this.coinGroup, this.coinHandler, () => { 
+   
+  });
+ 
 
     this.hero.on('died', () => {
       groundCollider.destroy();
@@ -207,10 +206,16 @@ class Game extends Phaser.Scene {
       this.hero.body.setCollideWorldBounds(false);
       this.cameras.main.stopFollow();
     });
-  }
 
- 
 
+  } 
+
+
+   coinHandler(hero, coin) {
+    //console.log('--coinHandler');
+    console.log('coin.id = ' + coin.id);
+  };
+  
 
   addMap() {
     console.log('this.levelIndex = ' + this.levelIndex);
@@ -263,8 +268,8 @@ class Game extends Phaser.Scene {
         coin.setOffset(5, 10);
         coin.id = coinID;
         coin.onOverlap = true;
-        console.log(coin);
-        console.log('coinID = ' + coinID);
+        // /console.log(coin);
+        console.log('coin.id = ' + coin.id); //coinID);
         coinID++;
       }
       
