@@ -17,9 +17,10 @@ class Menu extends Phaser.Scene {
 
   preload() {}
 
-  create(data) {
-
-    //gameState.clearSavedData();
+    create(data) {
+        //Clear localStorage data
+        //gameState.clearSavedData();
+        
       //console.log(this.dummy);
       //console.log(this.previousScore);
     console.log('--menu.js - start');
