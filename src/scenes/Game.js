@@ -123,14 +123,8 @@ class Game extends Phaser.Scene {
     this.add.tileSprite(400, 300, 1300, 600, "backgroundImage"); 
 
    // const hero = this.add.sprite(26 + this.levelIndex * 70, 80, 'hero-run-sheet', 1);
-   // hero.anims.play('hero-running');
-
-    const loseButton = this.add.text(80, 400, 'Menu', { font: '30px Arial', fill: '#000000' });
-    loseButton.setInteractive();
-    loseButton.on('pointerup', this.failLevel, this);
-    const winButton = this.add.text(900, 400, 'Win', { font: '30px Arial', fill: '#000000' });
-    winButton.setInteractive();
-    winButton.on('pointerup', this.completeLevel, this);
+   // hero.anims.play('hero-running'); 
+ 
 
     // Game Code
     this.jump1 = this.sound.add('jump1', { loop: false });
