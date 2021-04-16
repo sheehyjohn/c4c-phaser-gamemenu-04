@@ -12,6 +12,7 @@ class Menu extends Phaser.Scene {
         this.previousScore = data.score; 
         this.coinsCollected = data.coinsCollected;
         this.coinsTotal = data.coinsTotal;
+        this.time = data.time;
     }
 
   preload() {}
@@ -27,6 +28,7 @@ class Menu extends Phaser.Scene {
         this.add.text(420, 25, `Score: ` + data.score, { font: '15px Arial', fill: '#000000' });
         let coinsPercent = Math.round((this.coinsCollected/this.coinsTotal)*100);
         this.add.text(420, 40, `Coins: ` + coinsPercent + '%', { font: '15px Arial', fill: '#000000' });
+        this.add.text(420, 55, `Coins: ` + this.time + 's', { font: '15px Arial', fill: '#000000' });
     }
 
     // Add level menu buttons.

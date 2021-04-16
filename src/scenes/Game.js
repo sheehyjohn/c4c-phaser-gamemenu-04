@@ -119,21 +119,14 @@ class Game extends Phaser.Scene {
     this.keyCount = 0;
     this.coinsCollected = 0;
     this.coinsTotal = 0;
+    this.timerGame = 0;
 
     this.gameTimer = this.time.addEvent({
         delay: 1000,
         callback: function(){
-            this.timeLeft --;
-
-            // dividing enery bar width by the number of seconds gives us the amount
-            // of pixels we need to move the energy bar each second
-            let stepWidth = this.energyMask.displayWidth / gameOptions.initialTime;
-
-            // moving the mask
-            this.energyMask.x -= stepWidth;
-            if(this.timeLeft == 0){
-                this.scene.start("PlayGame")
-            }
+          console.log('timer');
+          this.timerGame++;
+          this.timerText.setText('Time: ' + this.timerGame + ' s')
         },
         callbackScope: this,
         loop: true
@@ -358,6 +351,8 @@ class Game extends Phaser.Scene {
     this.coinsPercentText.setScrollFactor(0);
     this.keyText = this.add.text(420,35, 'Key: ' + this.keyCount + ' of 2 ', { font: '15px Arial', fill: '#000000' });
     this.keyText.setScrollFactor(0);
+    this.timerText = this.add.text(420,50, 'Time: ' + this.timerGame + ' sec', { font: '15px Arial', fill: '#000000' });
+    this.timerText.setScrollFactor(0);
 
     const skipButton = this.add.text(10, 10, 'Skip', { font: '15px Arial', fill: '#000000' });
     skipButton.setInteractive();
@@ -391,7 +386,8 @@ class Game extends Phaser.Scene {
             dummy: "dummyText", 
             score : this.score,
             coinsCollected :this.coinsCollected,
-            coinsTotal : this.coinsTotal
+            coinsTotal : this.coinsTotal,
+            time : this.timerGame
         });
   }
 
