@@ -56,8 +56,7 @@ class Game extends Phaser.Scene {
 
     console.log('-- decide background');
     console.log(this.levelIndex);
-    console.log(this.levelData);
-    //this.decideBackground();
+    console.log(this.levelData); 
 
 
     console.log('')
@@ -389,23 +388,7 @@ class Game extends Phaser.Scene {
     return Math.floor(Math.random() * max);
   }
 
-  decideBackground() {
-    console.log('--decideBackground()');
-    //this.load.image('clouds-sheet', 'assets/tilesets/blueGrey.png');
-    var backgroundFlag = this.getRandomInt(3)
-    console.log('backgroundFlag = ' + backgroundFlag);
-
-    //if
-    switch(backgroundFlag) {
-        case 0:
-          this.load.image('clouds-sheet', 'assets/tilesets/clouds.png');
-          break;
-        case 1:
-          this.load.image('clouds-sheet', 'assets/tilesets/blueGrey.png');
-          break;
-        default:
-          this.load.image('clouds-sheet', 'assets/tilesets/pinkTrees.png');
-    }
+   
 
 
 
