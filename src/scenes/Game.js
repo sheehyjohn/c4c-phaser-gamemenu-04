@@ -67,6 +67,8 @@ class Game extends Phaser.Scene {
     //this.load.image('clouds-sheet', 'assets/tilesets/pinkTrees.png');
     //this.load.image('clouds-sheet', 'assets/tilesets/blueGrey.png');
     
+
+    //Background - Loads fine but can't switch - could it be the tileset size in Tiled?
     let backgroundFlag = this.levelIndex;
     switch(backgroundFlag) {
       case 0:
