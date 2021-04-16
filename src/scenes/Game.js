@@ -206,7 +206,7 @@ class Game extends Phaser.Scene {
         console.log(this.score);
         this.text1.setText('Score: ' + this.score);
         let coinsPercent = Math.round((this.coinsCollected/this.coinsTotal)*100);
-        this.coinsPercentText.setText('Coins: '+ coinsPercent +' %')
+        this.coinsPercentText.setText('Coins: '+ coinsPercent +'%')
     });
 
   const keyCollider = this.physics.add.overlap(this.hero, this.keyGroup, this.keyHandler, () => {

@@ -24,9 +24,9 @@ class Menu extends Phaser.Scene {
 
     if (data.score > 0) {
         this.add.text(390, 10, `Previous Level`, { font: '15px Arial', fill: '#000000' });
-        this.add.text(425, 25, `Score: ` + data.score, { font: '15px Arial', fill: '#000000' });
+        this.add.text(420, 25, `Score: ` + data.score, { font: '15px Arial', fill: '#000000' });
         let coinsPercent = Math.round((this.coinsCollected/this.coinsTotal)*100);
-        this.add.text(430, 40, `Coins: ` + coinsPercent + '%', { font: '15px Arial', fill: '#000000' });
+        this.add.text(420, 40, `Coins: ` + coinsPercent + '%', { font: '15px Arial', fill: '#000000' });
     }
 
     // Add level menu buttons.
