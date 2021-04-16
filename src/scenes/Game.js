@@ -119,6 +119,25 @@ class Game extends Phaser.Scene {
     this.keyCount = 0;
     this.coinsCollected = 0;
     this.coinsTotal = 0;
+
+    this.gameTimer = this.time.addEvent({
+        delay: 1000,
+        callback: function(){
+            this.timeLeft --;
+
+            // dividing enery bar width by the number of seconds gives us the amount
+            // of pixels we need to move the energy bar each second
+            let stepWidth = this.energyMask.displayWidth / gameOptions.initialTime;
+
+            // moving the mask
+            this.energyMask.x -= stepWidth;
+            if(this.timeLeft == 0){
+                this.scene.start("PlayGame")
+            }
+        },
+        callbackScope: this,
+        loop: true
+    });
     
     //Add Background
     this.add.tileSprite(400, 300, 1300, 600, "backgroundImage");  
@@ -354,6 +373,9 @@ class Game extends Phaser.Scene {
   }
 
    
+  updateTimer(){
+      console.log('--timer');
+  }
 
  
 
