@@ -82,12 +82,10 @@ class Game extends Phaser.Scene {
         frameWidth: 32,
         frameHeight: 64,
       });      
-  
-    //this.load.image('logo', 'assests/phase3-logo.png');
+   
     this.load.spritesheet('hero-run-sheet', 'assets/hero/run.png', {
         frameWidth: 32,
-        frameHeight: 64,      
-    //endframe/startFrame are options here
+        frameHeight: 64,       
     });
 
     this.load.spritesheet('hero-pivot-sheet', 'assets/hero/pivot.png', {
@@ -118,26 +116,22 @@ class Game extends Phaser.Scene {
   create(data) {
 
     this.score = 0;
-    this.keyCount = 0;
-
+    this.keyCount = 0; 
     
     //Add Background
-    this.add.tileSprite(400, 300, 1300, 600, "backgroundImage"); 
-
-   // const hero = this.add.sprite(26 + this.levelIndex * 70, 80, 'hero-run-sheet', 1);
-   // hero.anims.play('hero-running'); 
- 
+    this.add.tileSprite(400, 300, 1300, 600, "backgroundImage");  
 
     // Game Code
     this.jump1 = this.sound.add('jump1', { loop: false });
     this.jump2 = this.sound.add('jump2', { loop: false }); 
-    this.coinChime = this.sound.add('coinChime', { loop: false }); 
-    //this.deadSound = this.sound.add('deadSound', { loop: false }); 
+    this.coinChime = this.sound.add('coinChime', { loop: false });  
     this.deadSound = this.sound.add('deadSound'); 
     this.keySound = this.sound.add('keySound', { loop: false }); 
 
+    // Enable the Keyboard Cursor Keys
     this.cursorKeys = this.input.keyboard.createCursorKeys();
 
+    //////////////// Animation Sheets /////////////////////////////////
     this.anims.create({
         key: 'hero-idle',
         frames: this.anims.generateFrameNumbers('hero-idle-sheet'),
@@ -184,8 +178,7 @@ class Game extends Phaser.Scene {
     this.addMap(); 
     this.addHero();
 
-    this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
-    //this.cameras.main.startFollow(this.hero);   
+    this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels); 
  
   }
 
@@ -200,22 +193,15 @@ class Game extends Phaser.Scene {
 
     const spikesCollider = this.physics.add.overlap(this.hero, this.spikeGroup, () => {
       this.hero.kill();
-    });
-     
-    /*
-    const coinsCollider = this.physics.add.overlap(this.hero, this.coinGroup, () => { 
-        console.log('--coinsCollider');  
-        console.log(this.coinGroup); 
-    });
-    */
+    }); 
 
-  const coinsCollider = this.physics.add.overlap(this.hero,  this.coinGroup, this.coinHandler, () => { 
-    // this is the event handler for the overlap and it passes the two objects
-    // hero and coin to coinHandler 
-    this.score += 10;
-    console.log(this.score);
-    this.text1.setText('Score: ' + this.score);
-  });
+    const coinsCollider = this.physics.add.overlap(this.hero,  this.coinGroup, this.coinHandler, () => { 
+        // this is the event handler for the overlap and it passes the two objects
+        // hero and coin to coinHandler 
+        this.score += 10;
+        console.log(this.score);
+        this.text1.setText('Score: ' + this.score);
+    });
 
   const keyCollider = this.physics.add.overlap(this.hero, this.keyGroup, this.keyHandler, () => {
     this.keyCount++;
@@ -231,6 +217,8 @@ class Game extends Phaser.Scene {
     this.hero.on('died', () => {
       groundCollider.destroy();
       spikesCollider.destroy();
+      coinsCollider.destroy();
+      keyCollider.destroy();
       this.hero.body.setCollideWorldBounds(false);
       this.cameras.main.stopFollow();
     });
