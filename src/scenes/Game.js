@@ -66,17 +66,23 @@ class Game extends Phaser.Scene {
     //this.load.image('clouds-sheet', 'assets/tilesets/blueGrey.png');
     
 
+    //this.load.image('backgroundImage', 'assets/tilesets/pinkTrees.png');
+
     //Background - Loads fine but can't switch - could it be the tileset size in Tiled?
     let backgroundFlag = this.levelIndex;
     switch(backgroundFlag) {
       case 0:
-        this.backgroundSelection = 'blueGrey';
-        this.load.image('clouds-sheet', 'assets/tilesets/' + this.backgroundSelection + '.png');  
+          console.log('load blueGrey as backgroundImage');
+        //this.backgroundSelection = 'blueGrey';
+        //this.load.image('clouds-sheet', 'assets/tilesets/' + this.backgroundSelection + '.png');  
+        this.load.image('backgroundImage', 'assets/tilesets/blueGrey.png');
       //
         break;
       case 1:
-        this.backgroundSelection = 'pinkTrees';
-        this.load.image('clouds-sheet', 'assets/tilesets/' + this.backgroundSelection + '.png');  
+        console.log('load pinkTrees as backgroundImage');
+        //this.backgroundSelection = 'pinkTrees';
+        //this.load.image('clouds-sheet', 'assets/tilesets/' + this.backgroundSelection + '.png');  
+        this.load.image('backgroundImage', 'assets/tilesets/pinkTrees.png');
         break;
       default:
         //this.load.image('clouds-sheet', 'assets/tilesets/clouds.png');  
@@ -136,6 +142,8 @@ class Game extends Phaser.Scene {
     this.keyCount = 0;
 
     
+    //Add Background
+    this.add.tileSprite(400, 300, 1300, 600, "backgroundImage"); 
 
    // const hero = this.add.sprite(26 + this.levelIndex * 70, 80, 'hero-run-sheet', 1);
    // hero.anims.play('hero-running');
@@ -205,8 +213,7 @@ class Game extends Phaser.Scene {
 
     this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
     //this.cameras.main.startFollow(this.hero);   
-
-
+ 
   }
 
   addHero() {
@@ -286,12 +293,12 @@ class Game extends Phaser.Scene {
     this.map = this.make.tilemap({ key: this.levelData.map }); 
     
     const groundTiles = this.map.addTilesetImage('world-1', 'world-1-sheet');
-    const backgroundTiles = this.map.addTilesetImage('clouds', 'clouds-sheet');
+    //const backgroundTiles = this.map.addTilesetImage('clouds', 'clouds-sheet');
     //const backgroundTiles = this.map.addTilesetImage('blueGrey', 'clouds-sheet');
 
     // Z-Depth occurs as the layers are created ... clouds at the back
-    const backgroundLayer = this.map.createStaticLayer('Background', backgroundTiles);
-    backgroundLayer.setScrollFactor(0.6);
+    //const backgroundLayer = this.map.createStaticLayer('Background', backgroundTiles);
+    //backgroundLayer.setScrollFactor(0.6);
     
     this.add.text(10, 10, this.levelData.name, { font: '48px Arial', fill: '#000000' });
     
@@ -390,10 +397,7 @@ class Game extends Phaser.Scene {
 
    
 
-
-
-
-  }
+ 
 
   failLevel() {
     this.scene.start('MenuScene');

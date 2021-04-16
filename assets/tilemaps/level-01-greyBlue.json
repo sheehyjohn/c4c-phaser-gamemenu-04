@@ -19,8 +19,20 @@
          "name":"Background",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":32,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "id":8,
+         "image":"..\/tilesets\/blueGrey.png",
+         "name":"BackgroundImage",
+         "offsetx":7,
+         "offsety":-16,
+         "opacity":1,
+         "type":"imagelayer",
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -535,7 +547,7 @@
          "name":"Ground",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":32,
          "x":0,
          "y":0
@@ -709,7 +721,7 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":8,
+ "nextlayerid":9,
  "nextobjectid":76,
  "orientation":"orthogonal",
  "renderorder":"right-down",
