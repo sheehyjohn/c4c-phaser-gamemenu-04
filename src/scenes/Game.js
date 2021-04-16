@@ -290,7 +290,7 @@ class Game extends Phaser.Scene {
     this.coinGroup = this.physics.add.group({ immovable: true, allowGravity: false });
     
     let coinID = 0;
-    this.map.getObjectLayer('ObjectsCoins').objects.forEach(object => {
+    this.map.getObjectLayer('Coins').objects.forEach(object => {
       //console.log('--forEach');
       if (object.name === 'Start') {
         this.spawnPos = { x: object.x, y: object.y };

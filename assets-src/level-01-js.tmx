@@ -6,7 +6,7 @@
  <tileset firstgid="1" name="world-1" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="9" columns="3">
   <image source="../assets/tilesets/world-1 - next.png" width="102" height="102"/>
  </tileset>
- <objectgroup id="6" name="ObjectsCoins">
+ <objectgroup id="6" name="Coins">
   <object id="27" gid="8" x="192" y="384" width="32" height="32"/>
   <object id="28" gid="8" x="96" y="384" width="32" height="32"/>
   <object id="29" gid="8" x="128" y="320" width="32" height="32"/>
