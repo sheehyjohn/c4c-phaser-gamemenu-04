@@ -66,7 +66,7 @@ class Game extends Phaser.Scene {
     //this.load.image('clouds-sheet', 'assets/tilesets/clouds.png');
     //this.load.image('clouds-sheet', 'assets/tilesets/pinkTrees.png');
     //this.load.image('clouds-sheet', 'assets/tilesets/blueGrey.png');
-    console.log('this.levelIndex = ' + this.levelIndex);
+    
     let backgroundFlag = this.levelIndex;
     switch(backgroundFlag) {
       case 0:
@@ -81,6 +81,7 @@ class Game extends Phaser.Scene {
       default:
         //this.load.image('clouds-sheet', 'assets/tilesets/clouds.png');  
   }
+  console.log('--this.levelIndex = ' + this.levelIndex + ' ' + this.backgroundSelection);
 
     
 
@@ -373,6 +374,11 @@ class Game extends Phaser.Scene {
     this.text1.setScrollFactor(0);
     this.keyText = this.add.text(370,30, 'Key: ' + this.keyCount + ' of 2 ', { font: '24px Arial', fill: '#000000' });
     this.keyText.setScrollFactor(0);
+
+    const skipButton = this.add.text(10, 10, 'Skip', { font: '15px Arial', fill: '#000000' });
+    skipButton.setInteractive();
+    skipButton.on('pointerup', this.completeLevel, this);
+    skipButton.setScrollFactor(0);
 
     this.map.createStaticLayer('Foreground', groundTiles);
 
