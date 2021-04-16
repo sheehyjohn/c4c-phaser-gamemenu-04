@@ -363,7 +363,14 @@ class Game extends Phaser.Scene {
   
   completeLevel() {
     gameState.completeLevel(this.levelIndex);
-    this.scene.start('MenuScene');
+    //this.scene.start('MenuScene');
+    this.scene.start('MenuScene', 
+        {  
+            dummy: "dummyText", 
+            score : this.score,
+            coinsCollected :this.coinsCollected,
+            coinsTotal : this.coinsTotal
+        });
   }
 
   update(time, delta) {

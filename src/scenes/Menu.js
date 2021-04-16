@@ -7,13 +7,27 @@ class Menu extends Phaser.Scene {
     super({ key: 'MenuScene' });
   }
 
-  init(data) {}
+    init(data) {
+        this.dummy = data.dummy;  
+        this.previousScore = data.score; 
+        this.coinsCollected = data.coinsCollected;
+        this.coinsTotal = data.coinsTotal;
+    }
 
   preload() {}
 
   create(data) {
+      console.log(this.dummy);
+      console.log(this.previousScore);
     console.log('--menu.js - start');
     this.add.text(10, 10, `Please Select a Level`, { font: '25px Arial', fill: '#000000' });
+
+    if (data.score > 0) {
+        this.add.text(390, 10, `Previous Level`, { font: '15px Arial', fill: '#000000' });
+        this.add.text(425, 25, `Score: ` + data.score, { font: '15px Arial', fill: '#000000' });
+        let coinsPercent = Math.round((this.coinsCollected/this.coinsTotal)*100);
+        this.add.text(430, 40, `Coins: ` + coinsPercent + '%', { font: '15px Arial', fill: '#000000' });
+    }
 
     // Add level menu buttons.
     const itemsPerRow = 5;
@@ -33,6 +47,7 @@ class Menu extends Phaser.Scene {
       if (unlocked) {
         button.setInteractive();
         // When menu button is clicked, switch to game scene and pass along the index for the selected level. 
+        
         button.on('pointerup', () => this.scene.start('GameScene', { levelIndex: i }));
       }
     }
