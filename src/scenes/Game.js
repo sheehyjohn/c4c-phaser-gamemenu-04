@@ -67,7 +67,7 @@ class Game extends Phaser.Scene {
         this.load.image('backgroundImage', 'assets/tilesets/pinkTrees.png');
         break;
       default: 
-      this.load.image('backgroundImage', 'assets/tilesets/blueGrey.png'); 
+        this.load.image('backgroundImage', 'assets/tilesets/blueGrey.png'); 
   } 
  
 
@@ -379,7 +379,7 @@ class Game extends Phaser.Scene {
   }
   
   completeLevel() {
-    gameState.completeLevel(this.levelIndex);
+    gameState.completeLevel(this.levelIndex, this.timerGame);
     //this.scene.start('MenuScene');
     this.scene.start('MenuScene', 
         {  

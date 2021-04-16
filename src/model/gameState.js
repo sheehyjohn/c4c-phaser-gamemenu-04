@@ -2,6 +2,11 @@ import Phaser from 'phaser'
 
 const Defaults = {
   MaxUnlockedLevel: 0,
+  timeLevel01 : 0,
+  timeLevel02 : 0,
+  timeLevel03 : 0,
+  timeLevel04 : 0,
+  
 };
 
 class GameState extends Phaser.Events.EventEmitter {
@@ -10,7 +15,12 @@ class GameState extends Phaser.Events.EventEmitter {
     super()
     this.Defaults = Defaults;
     this._data = {
-      maxUnlockedLevel: Defaults.MaxUnlockedLevel
+      maxUnlockedLevel: Defaults.MaxUnlockedLevel,
+      timeLevel01 : Defaults.timeLevel01,
+      timeLevel02 : Defaults.timeLevel02,
+      timeLevel03 : Defaults.timeLevel03,
+      timeLevel04 : Defaults.timeLevel04,
+      timeArray : Defaults.timeArray
     };
     this.load();
   }
@@ -37,9 +47,41 @@ class GameState extends Phaser.Events.EventEmitter {
     return this._data.maxUnlockedLevel;
   }
 
-  completeLevel(levelIndex) {
+    timeLevel01() {
+        return this._data.timeLevel01;
+    }
+
+    timeLevel02() {
+        return this._data.timeLevel02;
+    }
+
+    timeLevel03() {
+        return this._data.timeLevel02;
+    }
+
+    timeLevel04() {
+        return this._data.timeLevel02;
+    }
+
+  completeLevel(levelIndex, time) {
+    console.log('--completeLevel');
+    console.log(time);
     this._data.maxUnlockedLevel = Math.max(this._data.maxUnlockedLevel, levelIndex + 1);
+     
+    switch(levelIndex) {
+        case 0: 
+            this._data.timeLevel01 = time;
+            break;
+        case 1: 
+            this._data.timeLevel02 = time;
+            break;
+        default: 
+            this._data.timeLevel01 = time;
+    } 
+    
+
     this.save();
+    console.log(this);
   }
 
 }

@@ -28,8 +28,10 @@ class Menu extends Phaser.Scene {
         this.add.text(420, 25, `Score: ` + data.score, { font: '15px Arial', fill: '#000000' });
         let coinsPercent = Math.round((this.coinsCollected/this.coinsTotal)*100);
         this.add.text(420, 40, `Coins: ` + coinsPercent + '%', { font: '15px Arial', fill: '#000000' });
-        this.add.text(420, 55, `Coins: ` + this.time + 's', { font: '15px Arial', fill: '#000000' });
+        this.add.text(420, 55, `Time: ` + this.time + 's', { font: '15px Arial', fill: '#000000' });
     }
+
+    console.log()
 
     // Add level menu buttons.
     const itemsPerRow = 5;
@@ -52,6 +54,22 @@ class Menu extends Phaser.Scene {
         
         button.on('pointerup', () => this.scene.start('GameScene', { levelIndex: i }));
       }
+        let timerBest = 0
+        switch(i) {
+            case 0: 
+                timerBest = gameState.timeLevel01();
+                break;
+            case 1: 
+                 timerBest =  gameState.timeLevel02();
+                break;
+            default: 
+                 timerBest =  100   
+            } 
+ 
+      this.add.text(
+         10 + (i % itemsPerRow) * 100, 
+         95 + Math.floor(i / itemsPerRow) * 65, 
+         'Time:' + timerBest, { font: '10px Arial', fill: '#000000' }); 
     }
 
   }
