@@ -59,11 +59,27 @@ class Game extends Phaser.Scene {
     console.log(this.levelData);
     //this.decideBackground();
 
+
+    console.log('')
+
     //this.load.image('clouds-sheet', 'assets/tilesets/clouds.png');
     //this.load.image('clouds-sheet', 'assets/tilesets/pinkTrees.png');
-    this.load.image('clouds-sheet', 'assets/tilesets/blueGrey.png');
-
-
+    //this.load.image('clouds-sheet', 'assets/tilesets/blueGrey.png');
+    console.log('this.levelIndex = ' + this.levelIndex);
+    let backgroundFlag = this.levelIndex;
+    switch(backgroundFlag) {
+      case 0:
+        this.backgroundSelection = 'blueGrey';
+        this.load.image('clouds-sheet', 'assets/tilesets/' + this.backgroundSelection + '.png');  
+      //
+        break;
+      case 1:
+        this.backgroundSelection = 'pinkTrees';
+        this.load.image('clouds-sheet', 'assets/tilesets/' + this.backgroundSelection + '.png');  
+        break;
+      default:
+        this.load.image('clouds-sheet', 'assets/tilesets/clouds.png');  
+  }
 
     
 
@@ -320,7 +336,7 @@ class Game extends Phaser.Scene {
         coin.id = coinID;
         coin.onOverlap = true;
         // /console.log(coin);
-        console.log('coin.id = ' + coin.id); //coinID);
+       // console.log('coin.id = ' + coin.id); //coinID);
         coinID++;
       }
       
@@ -343,7 +359,7 @@ class Game extends Phaser.Scene {
         key.id = keyID;
         key.onOverlap = true;
         // /console.log(coin);
-        console.log('coin.id = ' + key.id); //);
+       // console.log('key.id = ' + key.id); //);
         keyID++;
       }
       
