@@ -3,7 +3,8 @@
     {
      "export":
         {
-         "format":"json"
+         "format":"json",
+         "target":"level-01-js.json"
         }
     },
  "height":14,
@@ -479,7 +480,7 @@
         {
          "draworder":"topdown",
          "id":7,
-         "name":"ObjectsKeys",
+         "name":"Keys",
          "objects":[
                 {
                  "gid":9,

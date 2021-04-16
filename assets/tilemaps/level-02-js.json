@@ -468,7 +468,7 @@
         {
          "draworder":"topdown",
          "id":7,
-         "name":"ObjectsKeys",
+         "name":"Keys",
          "objects":[
                 {
                  "gid":9,

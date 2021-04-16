@@ -313,7 +313,7 @@ class Game extends Phaser.Scene {
     ///////////////// Keys //////////////
     this.keyGroup = this.physics.add.group({ immovable: true, allowGravity: false });
     let keyID = 0;
-    this.map.getObjectLayer('ObjectsKeys').objects.forEach(object => {
+    this.map.getObjectLayer('Keys').objects.forEach(object => {
       console.log('--forEach-Keys');
       if (object.name === 'Start') {
         this.spawnPos = { x: object.x, y: object.y };

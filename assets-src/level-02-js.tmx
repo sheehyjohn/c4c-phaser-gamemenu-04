@@ -46,7 +46,7 @@
   <object id="133" gid="8" x="992" y="320" width="32" height="32"/>
   <object id="134" gid="8" x="992" y="256" width="32" height="32"/>
  </objectgroup>
- <objectgroup id="7" name="ObjectsKeys">
+ <objectgroup id="7" name="Keys">
   <object id="96" gid="9" x="672" y="352" width="32" height="32"/>
   <object id="97" gid="9" x="0" y="96" width="32" height="32"/>
  </objectgroup>
