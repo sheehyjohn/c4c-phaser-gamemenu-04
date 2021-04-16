@@ -2,10 +2,10 @@ import Phaser from 'phaser'
 
 const Defaults = {
   MaxUnlockedLevel: 0,
-  timeLevel01 : 0,
-  timeLevel02 : 0,
-  timeLevel03 : 0,
-  timeLevel04 : 0,
+  timeLevel01 : 101,
+  timeLevel02 : 101,
+  timeLevel03 : 101,
+  timeLevel04 : 101,
   
 };
 
@@ -56,28 +56,41 @@ class GameState extends Phaser.Events.EventEmitter {
     }
 
     timeLevel03() {
-        return this._data.timeLevel02;
+        return this._data.timeLevel03;
     }
 
     timeLevel04() {
-        return this._data.timeLevel02;
+        return this._data.timeLevel04;
     }
 
-  completeLevel(levelIndex, time) {
+  completeLevel(levelIndex, time, keysTwo) {
     console.log('--completeLevel');
     console.log(time);
     this._data.maxUnlockedLevel = Math.max(this._data.maxUnlockedLevel, levelIndex + 1);
-     
+    
+    //Check Keys if 2 (not skip) then record time
+    if (keysTwo == 2) {
     switch(levelIndex) {
-        case 0: 
-            this._data.timeLevel01 = time;
-            break;
-        case 1: 
-            this._data.timeLevel02 = time;
-            break;
-        default: 
-            this._data.timeLevel01 = time;
-    } 
+            case 0: 
+                if (time < this._data.timeLevel01 )
+                this._data.timeLevel01 = time;
+                break;
+            case 1: 
+                if (time < this._data.timeLevel02 )
+                this._data.timeLevel02 = time;
+                break;
+            case 2: 
+                if (time < this._data.timeLevel03 )    
+                this._data.timeLevel03 = time;
+                break;
+            case 3: 
+                if (time < this._data.timeLevel04 )
+                this._data.timeLevel04 = time;
+                break;
+            default: 
+                this._data.timeLevel01 = time;
+        } 
+    }
     
 
     this.save();

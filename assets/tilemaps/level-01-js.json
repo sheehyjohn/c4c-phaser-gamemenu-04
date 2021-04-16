@@ -505,30 +505,6 @@
                  "width":32,
                  "x":576,
                  "y":32
-                }, 
-                {
-                 "gid":9,
-                 "height":32,
-                 "id":76,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":128,
-                 "y":384
-                }, 
-                {
-                 "gid":9,
-                 "height":32,
-                 "id":77,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":160,
-                 "y":384
                 }],
          "opacity":1,
          "type":"objectgroup",

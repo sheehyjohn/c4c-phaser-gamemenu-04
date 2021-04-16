@@ -379,7 +379,7 @@ class Game extends Phaser.Scene {
   }
   
   completeLevel() {
-    gameState.completeLevel(this.levelIndex, this.timerGame);
+    gameState.completeLevel(this.levelIndex, this.timerGame, this.keyCount);
     //this.scene.start('MenuScene');
     this.scene.start('MenuScene', 
         {  

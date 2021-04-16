@@ -18,8 +18,10 @@ class Menu extends Phaser.Scene {
   preload() {}
 
   create(data) {
-      console.log(this.dummy);
-      console.log(this.previousScore);
+
+    //gameState.clearSavedData();
+      //console.log(this.dummy);
+      //console.log(this.previousScore);
     console.log('--menu.js - start');
     this.add.text(10, 10, `Please Select a Level`, { font: '25px Arial', fill: '#000000' });
 
@@ -31,7 +33,7 @@ class Menu extends Phaser.Scene {
         this.add.text(420, 55, `Time: ` + this.time + 's', { font: '15px Arial', fill: '#000000' });
     }
 
-    console.log()
+    
 
     // Add level menu buttons.
     const itemsPerRow = 5;
@@ -60,16 +62,28 @@ class Menu extends Phaser.Scene {
                 timerBest = gameState.timeLevel01();
                 break;
             case 1: 
-                 timerBest =  gameState.timeLevel02();
+                timerBest =  gameState.timeLevel02();
+                break;
+            case 2: 
+                timerBest =  gameState.timeLevel03();
+                break;
+            case 3: 
+                timerBest =  gameState.timeLevel04();
                 break;
             default: 
                  timerBest =  100   
-            } 
+        } 
+        // if undefined test
+        
+        if (typeof timerBest == 'undefined') {
+            //console.log(timerBest);
+            timerBest = 100;
+        }
  
       this.add.text(
          10 + (i % itemsPerRow) * 100, 
          95 + Math.floor(i / itemsPerRow) * 65, 
-         'Time:' + timerBest, { font: '10px Arial', fill: '#000000' }); 
+         'best time: ' + timerBest, { font: '10px Arial', fill: '#000000' }); 
     }
 
   }

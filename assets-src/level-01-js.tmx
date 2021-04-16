@@ -49,8 +49,6 @@
  <objectgroup id="7" name="Keys">
   <object id="72" gid="9" x="960" y="288" width="32" height="32"/>
   <object id="73" gid="9" x="576" y="32" width="32" height="32"/>
-  <object id="76" gid="9" x="128" y="384" width="32" height="32"/>
-  <object id="77" gid="9" x="160" y="384" width="32" height="32"/>
  </objectgroup>
  <layer id="1" name="Ground" width="32" height="14">
   <data encoding="base64">
