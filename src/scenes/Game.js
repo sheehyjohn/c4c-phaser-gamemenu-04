@@ -54,43 +54,20 @@ class Game extends Phaser.Scene {
       spacing: 2,
     });
 
-    console.log('-- decide background');
-    console.log(this.levelIndex);
-    console.log(this.levelData); 
 
-
-    console.log('')
-
-    //this.load.image('clouds-sheet', 'assets/tilesets/clouds.png');
-    //this.load.image('clouds-sheet', 'assets/tilesets/pinkTrees.png');
-    //this.load.image('clouds-sheet', 'assets/tilesets/blueGrey.png');
-    
-
-    //this.load.image('backgroundImage', 'assets/tilesets/pinkTrees.png');
-
-    //Background - Loads fine but can't switch - could it be the tileset size in Tiled?
-    let backgroundFlag = this.levelIndex;
-    switch(backgroundFlag) {
-      case 0:
-          console.log('load blueGrey as backgroundImage');
-        //this.backgroundSelection = 'blueGrey';
-        //this.load.image('clouds-sheet', 'assets/tilesets/' + this.backgroundSelection + '.png');  
-        this.load.image('backgroundImage', 'assets/tilesets/blueGrey.png');
-      //
+    ////////////////// Background /////////////////////
+    console.log('-- decide background'); 
+ 
+    switch(this.levelIndex) {
+      case 0: 
+        this.load.image('backgroundImage', 'assets/tilesets/blueGrey.png'); 
         break;
-      case 1:
-        console.log('load pinkTrees as backgroundImage');
-        //this.backgroundSelection = 'pinkTrees';
-        //this.load.image('clouds-sheet', 'assets/tilesets/' + this.backgroundSelection + '.png');  
+      case 1: 
         this.load.image('backgroundImage', 'assets/tilesets/pinkTrees.png');
         break;
-      default:
-        //this.load.image('clouds-sheet', 'assets/tilesets/clouds.png');  
-  }
-  console.log('--this.levelIndex = ' + this.levelIndex + ' ' + this.backgroundSelection);
-
-    
-
+      default: 
+  } 
+ 
 
     this.load.audio('jump1', ['assets/sound/jump1.wav']);
     this.load.audio('jump2', ['assets/sound/jump2.wav']);
@@ -292,20 +269,9 @@ class Game extends Phaser.Scene {
     //this.map = this.make.tilemap({ key: 'level-1' });
     this.map = this.make.tilemap({ key: this.levelData.map }); 
     
-    const groundTiles = this.map.addTilesetImage('world-1', 'world-1-sheet');
-    //const backgroundTiles = this.map.addTilesetImage('clouds', 'clouds-sheet');
-    //const backgroundTiles = this.map.addTilesetImage('blueGrey', 'clouds-sheet');
-
-    // Z-Depth occurs as the layers are created ... clouds at the back
-    //const backgroundLayer = this.map.createStaticLayer('Background', backgroundTiles);
-    //backgroundLayer.setScrollFactor(0.6);
+    const groundTiles = this.map.addTilesetImage('world-1', 'world-1-sheet'); 
     
-    this.add.text(10, 10, this.levelData.name, { font: '48px Arial', fill: '#000000' });
-    
-   
-    
-    //text1.scrollFactor(0);
-    //text1.scrollFactorY(0);
+    this.add.text(10, 10, this.levelData.name, { font: '48px Arial', fill: '#000000' }); 
 
     const groundLayer = this.map.createStaticLayer('Ground', groundTiles);
     groundLayer.setCollision([1, 2, 4], true);
