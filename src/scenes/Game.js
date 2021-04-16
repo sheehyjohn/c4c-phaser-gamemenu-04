@@ -265,33 +265,32 @@ class Game extends Phaser.Scene {
   addMap() {
     console.log('this.levelIndex = ' + this.levelIndex);
     console.log('this.levelData = ' + this.levelData);
-    console.log('level = ' + this.levelData.map);
-    //this.map = this.make.tilemap({ key: 'level-1' });
-    this.map = this.make.tilemap({ key: this.levelData.map }); 
-    
-    const groundTiles = this.map.addTilesetImage('world-1', 'world-1-sheet'); 
-    
-    this.add.text(10, 10, this.levelData.name, { font: '48px Arial', fill: '#000000' }); 
+    console.log('level = ' + this.levelData.map); 
 
+    this.map = this.make.tilemap({ key: this.levelData.map });  
+    
+    const groundTiles = this.map.addTilesetImage('world-1', 'world-1-sheet');  
     const groundLayer = this.map.createStaticLayer('Ground', groundTiles);
     groundLayer.setCollision([1, 2, 4], true);
 
-     //this.map.createStaticLayer('Ground', groundTiles);
-     this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
-     this.physics.world.setBoundsCollision(true, true, false, true);
+    // Level Name in the Top Left Hand Corner
+    this.add.text(10, 10, this.levelData.name, { font: '48px Arial', fill: '#000000' }); 
+    
+    this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+    this.physics.world.setBoundsCollision(true, true, false, true);
 
-     this.spikeGroup = this.physics.add.group({ immovable: true, allowGravity: false });     
+    this.spikeGroup = this.physics.add.group({ immovable: true, allowGravity: false });     
 
-     this.map.getObjectLayer('Objects').objects.forEach(object => {
-      if (object.name === 'Start') {
-        this.spawnPos = { x: object.x, y: object.y };
-      }
-      if (object.gid === 7) {
-        const spike = this.spikeGroup.create(object.x, object.y, 'world-1-sheet', object.gid - 1);
-        spike.setOrigin(0, 1);
-        spike.setSize(object.width - 10, object.height - 10);
-        spike.setOffset(5, 10);
-      }
+    this.map.getObjectLayer('Traps').objects.forEach(object => {
+          if (object.name === 'Start') {
+            this.spawnPos = { x: object.x, y: object.y };
+        }
+        if (object.gid === 7) {
+            const spike = this.spikeGroup.create(object.x, object.y, 'world-1-sheet', object.gid - 1);
+            spike.setOrigin(0, 1);
+            spike.setSize(object.width - 10, object.height - 10);
+            spike.setOffset(5, 10);
+        }
     });
 
     this.coinGroup = this.physics.add.group({ immovable: true, allowGravity: false });
