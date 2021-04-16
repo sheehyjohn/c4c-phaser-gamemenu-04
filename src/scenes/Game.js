@@ -1,8 +1,7 @@
 import Phaser from 'phaser';
 import gameState from '../model/gameState';
 import levels from '../data/levels'; 
-import Hero from '../entities/Hero';
-import ScoreHUD from '../scenes/scoreHUD';
+import Hero from '../entities/Hero'; 
  
 
 class Game extends Phaser.Scene {
