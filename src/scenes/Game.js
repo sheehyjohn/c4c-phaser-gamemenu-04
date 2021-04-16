@@ -78,7 +78,7 @@ class Game extends Phaser.Scene {
         this.load.image('clouds-sheet', 'assets/tilesets/' + this.backgroundSelection + '.png');  
         break;
       default:
-        this.load.image('clouds-sheet', 'assets/tilesets/clouds.png');  
+        //this.load.image('clouds-sheet', 'assets/tilesets/clouds.png');  
   }
 
     
