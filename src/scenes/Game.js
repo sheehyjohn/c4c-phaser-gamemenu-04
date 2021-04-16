@@ -116,7 +116,9 @@ class Game extends Phaser.Scene {
   create(data) {
 
     this.score = 0;
-    this.keyCount = 0; 
+    this.keyCount = 0;
+    this.coinsCollected = 0;
+    this.coinsTotal = 0;
     
     //Add Background
     this.add.tileSprite(400, 300, 1300, 600, "backgroundImage");  
@@ -199,8 +201,12 @@ class Game extends Phaser.Scene {
         // this is the event handler for the overlap and it passes the two objects
         // hero and coin to coinHandler 
         this.score += 10;
+        this.coinsCollected++; 
+        console.log(this.coinsCollected + ' of ' + this.coinsTotal);
         console.log(this.score);
         this.text1.setText('Score: ' + this.score);
+        let coinsPercent = Math.round((this.coinsCollected/this.coinsTotal)*100);
+        this.coinsPercentText.setText('Coins: '+ coinsPercent +' %')
     });
 
   const keyCollider = this.physics.add.overlap(this.hero, this.keyGroup, this.keyHandler, () => {
@@ -293,6 +299,7 @@ class Game extends Phaser.Scene {
         // Coins are given a unique ID
         coin.id = coinID;
         coin.onOverlap = true;
+        this.coinsTotal++;
         // /console.log(coin);
        // console.log('coin.id = ' + coin.id); //coinID);
         coinID++;
@@ -326,9 +333,11 @@ class Game extends Phaser.Scene {
 
     
 
-    this.text1 = this.add.text(370,10, 'Score: ' + this.score, { font: '24px Arial', fill: '#000000' });
+    this.text1 = this.add.text(420,5, 'Score: ' + this.score, { font: '15px Arial', fill: '#000000' });
     this.text1.setScrollFactor(0);
-    this.keyText = this.add.text(370,30, 'Key: ' + this.keyCount + ' of 2 ', { font: '24px Arial', fill: '#000000' });
+    this.coinsPercentText = this.add.text(420,20, 'Coins: 0%', { font: '15px Arial', fill: '#000000' });
+    this.coinsPercentText.setScrollFactor(0);
+    this.keyText = this.add.text(420,35, 'Key: ' + this.keyCount + ' of 2 ', { font: '15px Arial', fill: '#000000' });
     this.keyText.setScrollFactor(0);
 
     const skipButton = this.add.text(10, 10, 'Skip', { font: '15px Arial', fill: '#000000' });
