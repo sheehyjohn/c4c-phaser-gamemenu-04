@@ -72,7 +72,7 @@ class Menu extends Phaser.Scene {
                 timerBest =  gameState.timeLevel04();
                 break;
             default: 
-                 timerBest =  100   
+                 timerBest =  102  
         } 
         // if undefined test
         
