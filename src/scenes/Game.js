@@ -58,12 +58,29 @@ class Game extends Phaser.Scene {
         spacing: 2,
     });
     */
-    this.load.spritesheet('world-1-sheet', 'assets/tilesets/c4c-game-scans-01-world.png', {
-        frameWidth: 32,
-        frameHeight: 32,
-        margin: 1,
-        spacing: 2,
-    });
+    let frameWidth = 32;
+    let frameHeight = 32;
+    let margin = 1;
+    let spacing = 2;
+
+    console.log('---herer');
+    console.log(this.levelIndex);
+    switch(this.levelIndex) {
+        case 0: 
+            this.load.spritesheet('world-1-sheet', 'assets/tilesets/c4c-game-scans-01-world.png', 
+                {frameWidth: frameWidth,frameHeight: frameHeight,margin: margin,spacing: spacing,});
+            break;
+        case 1: 
+            this.load.spritesheet('world-1-sheet', 'assets/tilesets/world-1.png', 
+                {frameWidth: frameWidth,frameHeight: frameHeight,margin: margin,spacing: spacing,});
+            break; 
+        default: 
+            this.load.spritesheet('world-1-sheet', 'assets/tilesets/world-1.png', 
+                {frameWidth: frameWidth,frameHeight: frameHeight,margin: margin,spacing: spacing,});    
+    } 
+ 
+
+   
 
 
     ////////////////// Background /////////////////////
