@@ -50,7 +50,15 @@ class Game extends Phaser.Scene {
     //this.load.image('world-1-sheet', 'assets/tilesets/world-1.png');
 
     //////////////////// Sprite Sheets /////////////////////////////////
+    /*
     this.load.spritesheet('world-1-sheet', 'assets/tilesets/world-1.png', {
+        frameWidth: 32,
+        frameHeight: 32,
+        margin: 1,
+        spacing: 2,
+    });
+    */
+    this.load.spritesheet('world-1-sheet', 'assets/tilesets/c4c-game-scans-01-world.png', {
         frameWidth: 32,
         frameHeight: 32,
         margin: 1,
