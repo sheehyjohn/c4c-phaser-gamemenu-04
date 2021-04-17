@@ -63,13 +63,21 @@ class Game extends Phaser.Scene {
     let margin = 1;
     let spacing = 2;
 
-    console.log('---herer');
+    console.log('--------------------');
+    console.log('---select Background');
+    
     console.log(this.levelIndex);
     switch(this.levelIndex) {
         case 0: 
+            console.log('---here - level 1');
             this.load.spritesheet('world-1-sheet', 'assets/tilesets/c4c-game-scans-01-world.png', 
                 {frameWidth: frameWidth,frameHeight: frameHeight,margin: margin,spacing: spacing,});
             break;
+        case 1: 
+            console.log('---here - level 2');
+            this.load.spritesheet('world-1-sheet', 'assets/tilesets/c4c-game-scans-02-world.png', 
+                {frameWidth: frameWidth,frameHeight: frameHeight,margin: margin,spacing: spacing,});
+            break; 
         case 1: 
             this.load.spritesheet('world-1-sheet', 'assets/tilesets/world-1.png', 
                 {frameWidth: frameWidth,frameHeight: frameHeight,margin: margin,spacing: spacing,});
@@ -82,7 +90,23 @@ class Game extends Phaser.Scene {
 
    
 
+
+    ////////////////// Background /////////////////////
+    console.log('--------------------');
+    console.log('-- decide background'); 
  
+    switch(this.levelIndex) {
+      case 0: 
+        this.load.image('backgroundImage', 'assets/tilesets/blueGrey.png'); 
+        break;
+      case 1: 
+        this.load.image('backgroundImage', 'assets/tilesets/pinkTrees.png');
+        break;
+      default: 
+        this.load.image('backgroundImage', 'assets/tilesets/blueGrey.png'); 
+  } 
+ 
+
     this.load.audio('jump1', ['assets/sound/jump1.wav']);
     this.load.audio('jump2', ['assets/sound/jump2.wav']);
 
