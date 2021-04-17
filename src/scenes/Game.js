@@ -48,11 +48,13 @@ class Game extends Phaser.Scene {
     //this.load.tilemapTiledJSON('level-1a', 'assets/tilemaps/level-1a.json');
 */
     //this.load.image('world-1-sheet', 'assets/tilesets/world-1.png');
+
+    //////////////////// Sprite Sheets /////////////////////////////////
     this.load.spritesheet('world-1-sheet', 'assets/tilesets/world-1.png', {
-      frameWidth: 32,
-      frameHeight: 32,
-      margin: 1,
-      spacing: 2,
+        frameWidth: 32,
+        frameHeight: 32,
+        margin: 1,
+        spacing: 2,
     });
 
 
