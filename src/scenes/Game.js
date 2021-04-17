@@ -82,22 +82,7 @@ class Game extends Phaser.Scene {
 
    
 
-
-    ////////////////// Background /////////////////////
-    console.log('-- decide background'); 
  
-    switch(this.levelIndex) {
-      case 0: 
-        this.load.image('backgroundImage', 'assets/tilesets/blueGrey.png'); 
-        break;
-      case 1: 
-        this.load.image('backgroundImage', 'assets/tilesets/pinkTrees.png');
-        break;
-      default: 
-        this.load.image('backgroundImage', 'assets/tilesets/blueGrey.png'); 
-  } 
- 
-
     this.load.audio('jump1', ['assets/sound/jump1.wav']);
     this.load.audio('jump2', ['assets/sound/jump2.wav']);
 
