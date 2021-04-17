@@ -72,8 +72,12 @@ class GameState extends Phaser.Events.EventEmitter {
     if (keysTwo == 2) {
     switch(levelIndex) {
             case 0: 
-                if (time < this._data.timeLevel01 )
-                this._data.timeLevel01 = time;
+                console.log(time);
+                console.log(this._data.timeLevel01 );
+                if (time < this._data.timeLevel01 ) {
+                    console.log('faster');
+                    this._data.timeLevel01 = time;
+                }
                 break;
             case 1: 
                 if (time < this._data.timeLevel02 )
