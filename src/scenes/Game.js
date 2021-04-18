@@ -63,6 +63,16 @@ class Game extends Phaser.Scene {
     let margin = 1;
     let spacing = 2;
 
+    console.log('--------load sprite sheets------------');
+    this.load.spritesheet('world-1-sheet01', 'assets/tilesets/c4c-game-scans-01-world.png', 
+        {frameWidth: frameWidth,frameHeight: frameHeight,margin: margin,spacing: spacing,});
+    this.load.spritesheet('world-1-sheet02a', 'assets/tilesets/c4c-game-scans-02-world.png', 
+        {frameWidth: frameWidth,frameHeight: frameHeight,margin: margin,spacing: spacing,});
+    this.load.spritesheet('world-1-sheet', 'assets/tilesets/world-1.png', 
+        {frameWidth: frameWidth,frameHeight: frameHeight,margin: margin,spacing: spacing,});
+    
+
+    /*
     console.log('--------------------');
     console.log('---select Background');
     
@@ -86,7 +96,7 @@ class Game extends Phaser.Scene {
             this.load.spritesheet('world-1-sheet', 'assets/tilesets/world-1.png', 
                 {frameWidth: frameWidth,frameHeight: frameHeight,margin: margin,spacing: spacing,});    
     } 
- 
+ */
 
    
 
@@ -306,6 +316,21 @@ class Game extends Phaser.Scene {
     console.log('level = ' + this.levelData.map); 
 
     this.map = this.make.tilemap({ key: this.levelData.map });  
+
+    switch(this.levelIndex) {
+        case 0: 
+            console.log('---here - level 1');
+            this.levelSpriteSheet = 'world-1-sheet01';
+            break;
+        case 1: 
+            console.log('---here - level 2');
+            this.levelSpriteSheet = 'world-1-sheet02a';
+            break; 
+        case 1: 
+            this.levelSpriteSheet = 'world-1-sheet';
+            break; 
+        default: 
+    }
     
     const groundTiles = this.map.addTilesetImage('world-1', 'world-1-sheet');  
     const groundLayer = this.map.createStaticLayer('Ground', groundTiles);
