@@ -49,8 +49,6 @@
  <objectgroup id="7" name="Keys">
   <object id="72" gid="9" x="960" y="288" width="32" height="32"/>
   <object id="73" gid="9" x="576" y="32" width="32" height="32"/>
-  <object id="78" gid="9" x="64" y="320" width="32" height="32"/>
-  <object id="79" gid="9" x="64" y="288" width="32" height="32"/>
  </objectgroup>
  <layer id="1" name="Ground" width="32" height="14">
   <data encoding="base64">
@@ -63,9 +61,6 @@
   </data>
  </layer>
  <objectgroup id="5" name="Traps">
-  <object id="2" name="Start" x="113.333" y="235.667">
-   <point/>
-  </object>
   <object id="11" gid="7" x="256" y="416" width="32" height="32"/>
   <object id="12" gid="7" x="288" y="416" width="32" height="32"/>
   <object id="13" gid="7" x="320" y="416" width="32" height="32"/>

@@ -505,30 +505,6 @@
                  "width":32,
                  "x":576,
                  "y":32
-                }, 
-                {
-                 "gid":9,
-                 "height":32,
-                 "id":78,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":64,
-                 "y":320
-                }, 
-                {
-                 "gid":9,
-                 "height":32,
-                 "id":79,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":64,
-                 "y":288
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -569,18 +545,6 @@
          "id":5,
          "name":"Traps",
          "objects":[
-                {
-                 "height":0,
-                 "id":2,
-                 "name":"Start",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":113.333333333333,
-                 "y":235.666666666667
-                }, 
                 {
                  "gid":7,
                  "height":32,
