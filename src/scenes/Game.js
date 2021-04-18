@@ -66,7 +66,7 @@ class Game extends Phaser.Scene {
     console.log('--------load sprite sheets------------');
     this.load.spritesheet('world-1-sheet01', 'assets/tilesets/c4c-game-scans-01-world.png', 
         {frameWidth: frameWidth,frameHeight: frameHeight,margin: margin,spacing: spacing,});
-    this.load.spritesheet('world-1-sheet02a', 'assets/tilesets/c4c-game-scans-02-world.png', 
+    this.load.spritesheet('world-1-sheet02a', 'assets/tilesets/c4c-game-scans-02-worlda.png', 
         {frameWidth: frameWidth,frameHeight: frameHeight,margin: margin,spacing: spacing,});
     this.load.spritesheet('world-1-sheet', 'assets/tilesets/world-1.png', 
         {frameWidth: frameWidth,frameHeight: frameHeight,margin: margin,spacing: spacing,});
@@ -102,9 +102,9 @@ class Game extends Phaser.Scene {
 
 
     ////////////////// Background /////////////////////
-    this.load.image('backgroundImage01', 'assets/tilesets/blueGrey.png'); 
-    this.load.image('backgroundImage02', 'assets/tilesets/pinkTrees.png');
-    this.load.image('backgroundImage03', 'assets/tilesets/blueGrey.png'); 
+    this.load.image('backgroundImage01', 'assets/backgrounds/blueGrey.png'); 
+    this.load.image('backgroundImage02', 'assets/backgrounds/pinkTrees.png');
+    this.load.image('backgroundImage03', 'assets/backgrounds/clouds.png'); 
     
     /*
     console.log('--------------------');
