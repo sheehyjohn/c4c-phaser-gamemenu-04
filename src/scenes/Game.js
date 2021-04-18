@@ -42,6 +42,7 @@ class Game extends Phaser.Scene {
     this.load.tilemapTiledJSON('level-15', 'assets/tilemaps/level-15-sc.json');
     this.load.tilemapTiledJSON('level-16', 'assets/tilemaps/level-16-cian.json');
     this.load.tilemapTiledJSON('level-17', 'assets/tilemaps/level-17-dar.json');
+    this.load.tilemapTiledJSON('level-18', 'assets/tilemaps/level-18-dar.json');
     //this.load.tilemapTiledJSON('level-13', 'assets/tilemaps/level-12-alise.json');
     /*
     
@@ -55,8 +56,8 @@ class Game extends Phaser.Scene {
     
     
     
-    this.load.tilemapTiledJSON('level-17', 'assets/tilemaps/level-17-dar.json');
-    this.load.tilemapTiledJSON('level-18', 'assets/tilemaps/level-18-dar.json');
+    
+    
     //this.load.tilemapTiledJSON('level-19', 'assets/tilemaps/aa.json');
     //this.load.tilemapTiledJSON('level-20', 'assets/tilemaps/aa.json');
     //this.load.tilemapTiledJSON('level-1a', 'assets/tilemaps/level-1a.json');
