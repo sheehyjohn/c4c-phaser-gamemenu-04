@@ -71,6 +71,52 @@ class Menu extends Phaser.Scene {
             case 3: 
                 timerBest =  gameState.timeLevel04();
                 break;
+            case 4: 
+                timerBest =  gameState.timeLevel05();
+                break;
+            case 5: 
+                timerBest =  gameState.timeLevel06();
+                break;
+            case 6: 
+                timerBest =  gameState.timeLevel07();
+                break;
+            case 7: 
+                timerBest =  gameState.timeLevel08();
+                break;
+            case 8: 
+                timerBest =  gameState.timeLevel09();
+                break;
+            case 9: 
+                timerBest =  gameState.timeLevel10();
+                break;
+            case 10: 
+                timerBest =  gameState.timeLevel11();
+                break;
+            case 11: 
+                timerBest =  gameState.timeLevel12();
+                break;
+            case 12: 
+                timerBest =  gameState.timeLevel13();
+                break;
+            case 13: 
+                timerBest =  gameState.timeLevel14();
+                break;
+            case 14: 
+                timerBest =  gameState.timeLevel15();
+                break;
+            case 15: 
+                timerBest =  gameState.timeLevel16();
+                break;
+            case 16: 
+                timerBest =  gameState.timeLevel17();
+                break;
+            case 17: 
+                timerBest =  gameState.timeLevel18();
+                break;
+            case 18: 
+                timerBest =  gameState.timeLevel04();
+                break;
+                 
             default: 
                  timerBest =  102  
         } 
