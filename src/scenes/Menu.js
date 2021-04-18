@@ -113,9 +113,7 @@ class Menu extends Phaser.Scene {
             case 17: 
                 timerBest =  gameState.timeLevel18();
                 break;
-            case 18: 
-                timerBest =  gameState.timeLevel04();
-                break;
+            
                  
             default: 
                  timerBest =  102  
@@ -130,7 +128,7 @@ class Menu extends Phaser.Scene {
       this.add.text(
          10 + (i % itemsPerRow) * 100, 
          95 + Math.floor(i / itemsPerRow) * 65, 
-         'best time: ' + timerBest, { font: '10px Arial', fill: '#000000' }); 
+         'fastest time: ' + timerBest + 's', { font: '10px Arial', fill: '#000000' }); 
     }
 
   }
