@@ -10,7 +10,7 @@ class Preloader extends Phaser.Scene {
 
   preload() {
     // Add splash logo to the scene while content is preloading.
-    this.add.image(250, 150, 'logo');
+    this.add.image(250, 160, 'logo');
     
     // Preload all other required assets.
     this.load.setPath('assets');
@@ -30,7 +30,7 @@ class Preloader extends Phaser.Scene {
     });
 
     // All preloading and initialization is done. Add start button. (Could alternatively switch straight to menu).
-    const startButton = this.add.text(250, 250, 'START', { font: '40px Arial', fill: '#000000' });
+    const startButton = this.add.text(250, 300, 'Start', { font: '30px Arial', fill: '#000' });
     startButton.setInteractive();
     startButton.setOriginFromFrame();
     startButton.on('pointerup', () => this.scene.start('MenuScene'));
