@@ -64,14 +64,17 @@ class Game extends Phaser.Scene {
     let spacing = 2;
 
     console.log('--------load sprite sheets------------');
-    this.load.spritesheet('world-1-sheet01', 'assets/tilesets/c4c-game-scans-01-world.png', 
-        {frameWidth: frameWidth,frameHeight: frameHeight,margin: margin,spacing: spacing,});
-    this.load.spritesheet('world-1-sheet02a', 'assets/tilesets/c4c-game-scans-02a-world.png', 
-        {frameWidth: frameWidth,frameHeight: frameHeight,margin: margin,spacing: spacing,});
-    this.load.spritesheet('world-1-sheet02b', 'assets/tilesets/c4c-game-scans-02b-world.png', 
-        {frameWidth: frameWidth,frameHeight: frameHeight,margin: margin,spacing: spacing,}) 
     this.load.spritesheet('world-1-sheet', 'assets/tilesets/world-1.png', 
         {frameWidth: frameWidth,frameHeight: frameHeight,margin: margin,spacing: spacing,});
+    this.load.spritesheet('c4c-game-scans-01-world', 'assets/tilesets/c4c-game-scans-01-world.png', 
+        {frameWidth: frameWidth,frameHeight: frameHeight,margin: margin,spacing: spacing,});
+    this.load.spritesheet('c4c-game-scans-02a-world', 'assets/tilesets/c4c-game-scans-02a-world.png', 
+        {frameWidth: frameWidth,frameHeight: frameHeight,margin: margin,spacing: spacing,});
+    this.load.spritesheet('c4c-game-scans-02b-world', 'assets/tilesets/c4c-game-scans-02b-world.png', 
+        {frameWidth: frameWidth,frameHeight: frameHeight,margin: margin,spacing: spacing,}) 
+    this.load.spritesheet('c4c-game-scans-03-world', 'assets/tilesets/c4c-game-scans-03-world.png', 
+        {frameWidth: frameWidth,frameHeight: frameHeight,margin: margin,spacing: spacing,}) 
+    
         
     
 
@@ -336,8 +339,8 @@ class Game extends Phaser.Scene {
 
   addMap() {
     console.log('this.levelIndex = ' + this.levelIndex);
-    console.log('this.levelData = ' + this.levelData);
-    console.log('level = ' + this.levelData.map); 
+    //console.log('this.levelData = ' + this.levelData);
+    //console.log('level = ' + this.levelData.map); 
 
     this.map = this.make.tilemap({ key: this.levelData.map });  
 
@@ -345,17 +348,20 @@ class Game extends Phaser.Scene {
     switch(this.levelIndex) {
         case 0: 
             console.log('---here - level 1');
-            this.levelSpriteSheet = 'world-1-sheet01';
+            this.levelSpriteSheet = 'c4c-game-scans-01-world';
             break;
         case 1: 
             console.log('---here - level 2');
-            this.levelSpriteSheet = 'world-1-sheet02a';
+            this.levelSpriteSheet = 'c4c-game-scans-02a-world';
             break; 
         case 2: 
-            this.levelSpriteSheet = 'world-1-sheet02b';    
+            this.levelSpriteSheet = 'c4c-game-scans-02b-world';    
+            break; 
+        case 3: 
+            this.levelSpriteSheet = 'c4c-game-scans-03-world';    
             break; 
         default: 
-            this.levelSpriteSheet = 'world-1-sheet01';
+            this.levelSpriteSheet = 'c4c-game-scans-01-world';
     }
     
     const groundTiles = this.map.addTilesetImage('world-1', this.levelSpriteSheet);  
