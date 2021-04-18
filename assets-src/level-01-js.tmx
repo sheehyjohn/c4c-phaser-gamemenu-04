@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="32" height="14" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="80">
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="32" height="14" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="81">
  <editorsettings>
   <export target="../assets/tilemaps/level-01-js.json" format="json"/>
  </editorsettings>
@@ -77,5 +77,8 @@
   <object id="19" gid="7" x="864" y="448" width="32" height="32"/>
   <object id="20" gid="7" x="896" y="448" width="32" height="32"/>
   <object id="21" gid="7" x="928" y="448" width="32" height="32"/>
+  <object id="80" name="Start" x="80" y="385">
+   <point/>
+  </object>
  </objectgroup>
 </map>
