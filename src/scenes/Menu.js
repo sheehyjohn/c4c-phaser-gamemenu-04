@@ -122,7 +122,7 @@ class Menu extends Phaser.Scene {
         
         if (typeof timerBest == 'undefined') {
             //console.log(timerBest);
-            timerBest = 100;
+            timerBest = 99;
         }
  
       this.add.text(

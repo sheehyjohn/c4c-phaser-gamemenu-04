@@ -5,6 +5,7 @@ const Defaults = {
   timeLevel01 : 101,
   timeLevel02 : 101,
   timeLevel03 : 101,
+  timeLevel04 : 101,
   timeLevel05 : 101,
   timeLevel06 : 101,
   timeLevel07 : 101,
@@ -153,6 +154,7 @@ class GameState extends Phaser.Events.EventEmitter {
 
   completeLevel(levelIndex, time, keysTwo) {
     console.log('--completeLevel');
+    console.log(levelIndex);
     console.log(time);
     this._data.maxUnlockedLevel = Math.max(this._data.maxUnlockedLevel, levelIndex + 1);
     
@@ -164,16 +166,27 @@ class GameState extends Phaser.Events.EventEmitter {
                     this._data.timeLevel01 = time; 
                 break;
             case 1: 
-                if (time < this._data.timeLevel02 )
-                this._data.timeLevel02 = time;
+                if (time < this._data.timeLevel02 ) {
+                    console.log('---level2 time ');
+                    console.log(time);
+                    console.log(this._data.timeLevel02);
+                    this._data.timeLevel02 = time;
+                }
                 break;
             case 2: 
                 if (time < this._data.timeLevel03 )    
                 this._data.timeLevel03 = time;
                 break;
             case 3: 
-                if (time < this._data.timeLevel04 )
+                console.log('---level4 time ');
+                console.log(time);
+                console.log(this._data.timeLevel04);
+                if (time < this._data.timeLevel04 ) {
+                    
+                    console.log(time);
+                    console.log(this._data.timeLevel04);
                 this._data.timeLevel04 = time;
+            }
                 break;
             case 4: 
                 if (time < this._data.timeLevel05 )
@@ -185,7 +198,7 @@ class GameState extends Phaser.Events.EventEmitter {
                 break;
             case 6: 
                 if (time < this._data.timeLevel07 )
-                this._data.timeLevel04 = time;
+                this._data.timeLevel07 = time;
                 break;
             case 7: 
                 if (time < this._data.timeLevel08 )
@@ -196,8 +209,9 @@ class GameState extends Phaser.Events.EventEmitter {
                 this._data.timeLevel09 = time;
                 break;
             case 9: 
-                if (time < this._data.timeLevel10 )
+                if (time < this._data.timeLevel10 ) {
                 this._data.timeLevel10 = time;
+            }
                 break;
             case 10: 
                 if (time < this._data.timeLevel11 )
