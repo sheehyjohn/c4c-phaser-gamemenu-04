@@ -317,6 +317,7 @@ class Game extends Phaser.Scene {
 
     this.map = this.make.tilemap({ key: this.levelData.map });  
 
+    /////////////////// SpriteSheet Based on Levels ///////////////
     switch(this.levelIndex) {
         case 0: 
             console.log('---here - level 1');
@@ -326,13 +327,13 @@ class Game extends Phaser.Scene {
             console.log('---here - level 2');
             this.levelSpriteSheet = 'world-1-sheet02a';
             break; 
-        case 1: 
+        case 2: 
             this.levelSpriteSheet = 'world-1-sheet';
             break; 
         default: 
     }
     
-    const groundTiles = this.map.addTilesetImage('world-1', 'world-1-sheet');  
+    const groundTiles = this.map.addTilesetImage('world-1', this.levelSpriteSheet);  
     const groundLayer = this.map.createStaticLayer('Ground', groundTiles);
     groundLayer.setCollision([1, 2, 4], true);
 
@@ -349,7 +350,7 @@ class Game extends Phaser.Scene {
             this.spawnPos = { x: object.x, y: object.y };
         }
         if (object.gid === 7) {
-            const spike = this.spikeGroup.create(object.x, object.y, 'world-1-sheet', object.gid - 1);
+            const spike = this.spikeGroup.create(object.x, object.y, this.levelSpriteSheet, object.gid - 1);
             spike.setOrigin(0, 1);
             spike.setSize(object.width - 10, object.height - 10);
             spike.setOffset(5, 10);
@@ -365,7 +366,7 @@ class Game extends Phaser.Scene {
         this.spawnPos = { x: object.x, y: object.y };
       }
       if (object.gid === 8) {
-        const coin = this.coinGroup.create(object.x, object.y, 'world-1-sheet', object.gid - 1);
+        const coin = this.coinGroup.create(object.x, object.y, this.levelSpriteSheet, object.gid - 1);
         coin.setOrigin(0, 1);
         coin.setSize(object.width - 10, object.height - 10);
         coin.setOffset(5, 10);
@@ -389,7 +390,7 @@ class Game extends Phaser.Scene {
         this.spawnPos = { x: object.x, y: object.y };
       }
       if (object.gid === 9) {
-        const key = this.keyGroup.create(object.x, object.y, 'world-1-sheet', object.gid - 1);
+        const key = this.keyGroup.create(object.x, object.y, this.levelSpriteSheet, object.gid - 1);
         key.setOrigin(0, 1);
         key.setSize(object.width - 10, object.height - 10);
         key.setOffset(5, 10);
