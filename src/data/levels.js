@@ -4,9 +4,10 @@ export default [
   { name: 'Level 2', map: 'level-2' },
   
   { name: 'Level 3', map: 'level-3' },
-  { name: 'Level 4', map: 'level-4' }//,
+  { name: 'Level 4', map: 'level-4' },
+  
+  { name: 'Level 5', map: 'level-5' }//,
   /*
-  { name: 'Level 5', map: 'level-5' },
   { name: 'Level 6', map: 'level-6' },
   { name: 'Level 7', map: 'level-7' },
   { name: 'Level 8', map: 'level-8' },

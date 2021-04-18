@@ -27,9 +27,10 @@ class Game extends Phaser.Scene {
     this.load.tilemapTiledJSON('level-2', 'assets/tilemaps/level-02-js.json');
     this.load.tilemapTiledJSON('level-3', 'assets/tilemaps/level-03-js.json');
     this.load.tilemapTiledJSON('level-4', 'assets/tilemaps/level-04-js.json');
-    /*
+    
     
     this.load.tilemapTiledJSON('level-5', 'assets/tilemaps/level-05-hl.json');
+    /*
     this.load.tilemapTiledJSON('level-6', 'assets/tilemaps/level-06-sc.json');
     this.load.tilemapTiledJSON('level-7', 'assets/tilemaps/level-07-roc.json');
     this.load.tilemapTiledJSON('level-8', 'assets/tilemaps/level-08-cos.json');
@@ -361,7 +362,7 @@ class Game extends Phaser.Scene {
             this.levelSpriteSheet = 'c4c-game-scans-03-world';    
             break; 
         default: 
-            this.levelSpriteSheet = 'c4c-game-scans-01-world';
+            this.levelSpriteSheet = 'world-1-sheet';
     }
     
     const groundTiles = this.map.addTilesetImage('world-1', this.levelSpriteSheet);  
