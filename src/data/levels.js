@@ -11,9 +11,9 @@ export default [
   { name: 'Level 6', map: 'level-6' },
   
   { name: 'Level 7', map: 'level-7' },
-  { name: 'Level 8', map: 'level-8' }//,,,
-/*  { name: 'Level 9', map: 'level-9' },
-  { name: 'Level 10', map: 'level-10' },
+  { name: 'Level 8', map: 'level-8' },
+  { name: 'Level 9', map: 'level-9' }//,,,,
+/*  { name: 'Level 10', map: 'level-10' },
   { name: 'Level 11', map: 'level-11' },
   { name: 'Level 12', map: 'level-12' },
   { name: 'Level 13', map: 'level-13' },
