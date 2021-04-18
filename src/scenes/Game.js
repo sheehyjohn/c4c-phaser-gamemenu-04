@@ -102,6 +102,11 @@ class Game extends Phaser.Scene {
 
 
     ////////////////// Background /////////////////////
+    this.load.image('backgroundImage01', 'assets/tilesets/blueGrey.png'); 
+    this.load.image('backgroundImage02', 'assets/tilesets/pinkTrees.png');
+    this.load.image('backgroundImage03', 'assets/tilesets/blueGrey.png'); 
+    
+    /*
     console.log('--------------------');
     console.log('-- decide background'); 
  
@@ -114,7 +119,8 @@ class Game extends Phaser.Scene {
         break;
       default: 
         this.load.image('backgroundImage', 'assets/tilesets/blueGrey.png'); 
-  } 
+    } 
+    */
  
 
     this.load.audio('jump1', ['assets/sound/jump1.wav']);
@@ -177,9 +183,24 @@ class Game extends Phaser.Scene {
         callbackScope: this,
         loop: true
     });
-    
+    ///////////////////// Background ///////////////////////
+    switch(this.levelIndex) {
+        case 0: 
+            console.log('---Background - level 1');
+            this.backGroundLevel = 'backgroundImage01';
+            break;
+        case 1: 
+            console.log('---Background - level 2');
+            this.backGroundLevel = 'backgroundImage02';
+            break; 
+        case 2: 
+            this.backGroundLevel = 'backgroundImage03';
+            break; 
+        default: 
+            this.backGroundLevel = 'backgroundImage03';
+    }
     //Add Background
-    this.add.tileSprite(400, 300, 1300, 600, "backgroundImage");  
+    this.add.tileSprite(400, 300, 1300, 600, this.backGroundLevel );  
 
     // Game Code
     this.jump1 = this.sound.add('jump1', { loop: false });
